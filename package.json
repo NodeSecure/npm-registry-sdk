@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Node.js SDK to fetch data from the npm API.",
   "private": false,
-  "main": "index.js",
+  "type": "module",
+  "exports": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -26,7 +28,13 @@
     "undici": "^4.0.0-rc.5"
   },
   "devDependencies": {
+    "@slimio/is": "^1.5.1",
+    "@types/jest": "^26.0.23",
     "@types/node": "^15.12.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
+    "jest": "^27.0.4",
+    "ts-jest": "^27.0.3",
     "typescript": "^4.3.2"
   }
 }

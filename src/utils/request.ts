@@ -2,8 +2,11 @@
 import { Readable } from "stream";
 import { UrlObject } from "url";
 
-// Import third-party dependencies
+// Import Third-party dependencies
 import undici from "undici";
+
+// Import Internal Dependencies
+import { httpRegistryAgent } from "../registry";
 
 async function parseRequestBody<T>(body: Readable) {
   body.setEncoding("utf-8");
@@ -18,7 +21,7 @@ async function parseRequestBody<T>(body: Readable) {
 export interface RequestOptions {
   payload?: any;
   headers?: Record<string, any>;
-  method: "GET" | "POST" | "PUT";
+  method?: "GET" | "POST" | "PUT";
 }
 
 export interface RequestResponse<T> {
@@ -35,6 +38,7 @@ export async function request<T>(path: string | URL | UrlObject, options: Reques
   const { statusCode, body: rawBody } = await undici.request(path, {
     method,
     headers,
+    dispatcher: httpRegistryAgent,
     body: payload === null ? void 0 : JSON.stringify(payload)
   });
 

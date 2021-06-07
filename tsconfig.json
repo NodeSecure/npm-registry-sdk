@@ -4,12 +4,12 @@
       "strictNullChecks": true,
       "target": "ESNext",
       "outDir": "dist",
-      "module": "commonjs",
+      "module": "ESNext",
       "moduleResolution": "node",
       "esModuleInterop": true,
       "sourceMap": true,
       "rootDir": "src",
-      "types": ["node"]
+      "types": ["node", "jest"]
     },
     "include": ["src"],
     "exclude": ["node_modules", "dist"]
