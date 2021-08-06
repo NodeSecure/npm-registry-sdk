@@ -30,12 +30,12 @@
   "devDependencies": {
     "@nodesecure/eslint-config": "^1.1.0",
     "@slimio/is": "^1.5.1",
-    "@types/jest": "^26.0.23",
-    "@types/node": "^15.12.1",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.13",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
-    "jest": "^27.0.4",
-    "ts-jest": "^27.0.3",
-    "typescript": "^4.3.2"
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.4",
+    "typescript": "^4.3.5"
   }
 }
