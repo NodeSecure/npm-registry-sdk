@@ -28,6 +28,7 @@
     "undici": "^4.0.0-rc.5"
   },
   "devDependencies": {
+    "@nodesecure/eslint-config": "^1.1.0",
     "@slimio/is": "^1.5.1",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.12.1",
