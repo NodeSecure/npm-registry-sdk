@@ -1,3 +1,5 @@
+/* eslint-disable no-sync */
+
 // Import Third-party Dependencies
 import { jest } from "@jest/globals";
 import { mocked } from "ts-jest/utils";
@@ -56,7 +58,7 @@ describe("setLocalRegistryURL", () => {
 
   it("should throw if the string URL is invalid", () => {
     expect(() => setLocalRegistryURL("foobar")).toThrow();
-  })
+  });
 });
 
 describe("loadRegistryURLFromLocalSystem", () => {

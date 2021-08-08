@@ -1,10 +1,9 @@
 // Import Third-party Dependencies
-import * as npm from '@npm/types';
+import * as npm from "@npm/types";
 
 // Import Internal Dependencies
-import { request } from "./utils/request";
-import { getAuthenticationHeader } from "./auth";
-import { getLocalRegistryURL } from "./registry";
+import * as httpie from "@myunisoft/httpie";
+import { httpRegistryAgent, getLocalRegistryURL } from "./registry.js";
 
 export interface NpmRegistryMetadata {
   db_name: string;
@@ -21,9 +20,11 @@ export interface NpmRegistryMetadata {
 }
 
 export async function metadata() {
-  const { body } = await request<NpmRegistryMetadata>(getLocalRegistryURL());
+  const { data } = await httpie.get<NpmRegistryMetadata>(getLocalRegistryURL(), {
+    agent: httpRegistryAgent
+  });
 
-  return body;
+  return data;
 }
 
 interface packumentOptions {
@@ -33,19 +34,21 @@ interface packumentOptions {
 export async function packument(name: string, options?: packumentOptions): Promise<npm.Packument> {
   const path = new URL(name, getLocalRegistryURL());
 
-  const { body } = await request<npm.Packument>(path, {
-    headers: getAuthenticationHeader(options?.token ?? null)
+  const { data } = await httpie.get<npm.Packument>(path, {
+    authorization: options?.token,
+    agent: httpRegistryAgent
   });
 
-  return body;
+  return data;
 }
 
 export async function packumentVersion(name: string, version: string, options?: packumentOptions): Promise<npm.PackumentVersion> {
   const path = new URL(`${name}/${version}`, getLocalRegistryURL());
 
-  const { body } = await request<npm.PackumentVersion>(path, {
-    headers: getAuthenticationHeader(options?.token ?? null)
+  const { data } = await httpie.get<npm.PackumentVersion>(path, {
+    authorization: options?.token,
+    agent: httpRegistryAgent
   });
 
-  return body;
+  return data;
 }

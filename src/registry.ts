@@ -12,7 +12,7 @@ const kDefaultMaxRegistryConnections = 15;
 let localNPMRegistry = kNpmRegistryURL.href;
 
 export const httpRegistryAgent = new Agent({
-  connections: kDefaultMaxRegistryConnections,
+  connections: kDefaultMaxRegistryConnections
 });
 
 export function getNpmRegistryURL(): string {

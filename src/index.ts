@@ -1,3 +1,2 @@
-export * from "./api";
-export * from "./registry";
-export { setAuthenticationBearerToken } from "./auth";
+export * from "./api.js";
+export * from "./registry.js";
