@@ -19,7 +19,7 @@ export interface NpmRegistryMetadata {
   committed_update_seq: number;
 }
 
-export async function metadata() {
+export async function metadata(): Promise<NpmRegistryMetadata> {
   const { data } = await httpie.get<NpmRegistryMetadata>(getLocalRegistryURL(), {
     agent: httpRegistryAgent
   });
@@ -27,11 +27,11 @@ export async function metadata() {
   return data;
 }
 
-interface packumentOptions {
+export interface PackumentOptions {
   token: string;
 }
 
-export async function packument(name: string, options?: packumentOptions): Promise<npm.Packument> {
+export async function packument(name: string, options?: PackumentOptions): Promise<npm.Packument> {
   const path = new URL(name, getLocalRegistryURL());
 
   const { data } = await httpie.get<npm.Packument>(path, {
@@ -42,7 +42,7 @@ export async function packument(name: string, options?: packumentOptions): Promi
   return data;
 }
 
-export async function packumentVersion(name: string, version: string, options?: packumentOptions): Promise<npm.PackumentVersion> {
+export async function packumentVersion(name: string, version: string, options?: PackumentOptions): Promise<npm.PackumentVersion> {
   const path = new URL(`${name}/${version}`, getLocalRegistryURL());
 
   const { data } = await httpie.get<npm.PackumentVersion>(path, {
