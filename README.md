@@ -29,7 +29,7 @@ import Registry from "@nodesecure/npm-registry-sdk";
 ### getLocalRegistryURL(): string
 ### setLocalRegistryURL(value: string | URL): string
 ### loadRegistryURLFromLocalSystem(): string
-### metadata(): Promise<NpmRegistryMetadata>
+### metadata(): Promise\<NpmRegistryMetadata> 
 
 ```ts
 interface NpmRegistryMetadata {
@@ -47,7 +47,7 @@ interface NpmRegistryMetadata {
 }
 ```
 
-### packument(name: string, options?: PackumentOptions): Promise<npm.Packument>
+### packument(name: string, options?: PackumentOptions): Promise\<npm.Packument>
 
 ```ts
 interface PackumentOptions {
@@ -55,7 +55,7 @@ interface PackumentOptions {
 }
 ```
 
-### packumentVersion(name: string, version: string, options?: packumentOptions): Promise<npm.PackumentVersion>
+### packumentVersion(name: string, version: string, options?: packumentOptions): Promise\<npm.PackumentVersion>
 
 ## License
 MIT
