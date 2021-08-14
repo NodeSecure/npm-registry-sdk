@@ -17,6 +17,17 @@
         "security",
         "bug"
       ]
+    },
+    {
+      "login": "QuentinLpy",
+      "name": "Quentin Lepateley",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31780359?v=4",
+      "profile": "https://github.com/QuentinLpy",
+      "contributions": [
+        "code",
+        "doc",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
