@@ -2,7 +2,7 @@
 import { spawnSync } from "child_process";
 
 // Import Third-party Dependencies
-import { Agent } from "undici";
+import { Agent } from "@myunisoft/httpie";
 
 // CONSTANTS
 const kNpmRegistryURL = new URL("https://registry.npmjs.org");
