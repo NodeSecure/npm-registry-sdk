@@ -4,6 +4,7 @@ import * as npm from "@npm/types";
 // Import Internal Dependencies
 import * as httpie from "@myunisoft/httpie";
 import { httpRegistryAgent, getLocalRegistryURL } from "./registry.js";
+import { clamp } from "./utils.js";
 
 export interface NpmRegistryMetadata {
   db_name: string;
@@ -51,4 +52,41 @@ export async function packumentVersion(name: string, version: string, options?: 
   });
 
   return data;
+}
+
+export interface SearchOption{
+  text:string;
+  size:number;
+  from:number;
+  quality:number;
+  popularity:number;
+  maintenance:number;
+}
+
+export async function search(searchOption: SearchOption) {
+  const query = new URL("/-/v1/search", getLocalRegistryURL());
+
+  // Apply options to the URL
+  const { text, size, from, quality, popularity, maintenance } = searchOption;
+  if (typeof text === "string") {
+    query.searchParams.set("text", text);
+  }
+  if (typeof size === "number") {
+    query.searchParams.set("size", String(clamp(size, 0, 250)));
+  }
+  if (typeof from === "number") {
+    query.searchParams.set("from", String(from));
+  }
+  if (typeof quality === "number") {
+    query.searchParams.set("quality", String(clamp(quality, 0, 1)));
+  }
+  if (typeof popularity === "number") {
+    query.searchParams.set("popularity", String(clamp(popularity, 0, 1)));
+  }
+  if (typeof maintenance === "number") {
+    query.searchParams.set("maintenance", String(clamp(maintenance, 0, 1)));
+  }
+
+  // Send the Query
+  return (await httpie.get(query.href, { agent: httpRegistryAgent })).data;
 }
