@@ -29,6 +29,7 @@ export async function metadata(): Promise<NpmRegistryMetadata> {
 }
 
 export interface PackumentOptions {
+  /** Npm API Token **/
   token: string;
 }
 
@@ -54,20 +55,63 @@ export async function packumentVersion(name: string, version: string, options?: 
   return data;
 }
 
-export interface SearchOption{
-  text:string;
-  size:number;
-  from:number;
-  quality:number;
-  popularity:number;
-  maintenance:number;
+export interface SearchOptions {
+  /**	full-text search to apply **/
+  text: string;
+  /** how many results should be returned (default 20, max 250) **/
+  size: number;
+  /** offset to return results from **/
+  from: number;
+  /** how much of an effect should quality have on search results **/
+  quality: number;
+  /** how much of an effect should popularity have on search results **/
+  popularity: number;
+  /** how much of an effect should maintenance have on search results **/
+  maintenance: number;
 }
 
-export async function search(searchOption: SearchOption) {
+export interface SearchScore {
+  final: number;
+  detail: {
+    quality: number;
+    popularity: number;
+    maintenance: number;
+  }
+}
+
+export interface SearchMaintainer {
+  email: string;
+  username: string;
+}
+
+export interface SearchResult {
+  objects: {
+    package: {
+      name: string;
+      scope: string;
+      version: string;
+      description: string;
+      date: string;
+      links: {
+        npm: string;
+        homepage: string;
+        bugs: string;
+      }
+      author: SearchMaintainer & { name?: string };
+      publisher: SearchMaintainer;
+      maintainers: SearchMaintainer[];
+    },
+    score: SearchScore;
+    searchScore: number;
+  }[];
+  total: number;
+  time: string;
+}
+
+export async function search(searchOptions: SearchOptions, options?: PackumentOptions) {
+  const { text, size, from, quality, popularity, maintenance } = searchOptions;
   const query = new URL("/-/v1/search", getLocalRegistryURL());
 
-  // Apply options to the URL
-  const { text, size, from, quality, popularity, maintenance } = searchOption;
   if (typeof text === "string") {
     query.searchParams.set("text", text);
   }
@@ -87,6 +131,10 @@ export async function search(searchOption: SearchOption) {
     query.searchParams.set("maintenance", String(clamp(maintenance, 0, 1)));
   }
 
-  // Send the Query
-  return (await httpie.get(query.href, { agent: httpRegistryAgent })).data;
+  const { data } = await httpie.get(query, {
+    agent: httpRegistryAgent,
+    authorization: options?.token
+  });
+
+  return data;
 }
