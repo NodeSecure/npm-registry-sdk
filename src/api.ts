@@ -3,8 +3,8 @@ import * as npm from "@npm/types";
 
 // Import Internal Dependencies
 import * as httpie from "@myunisoft/httpie";
-import { httpRegistryAgent, getLocalRegistryURL } from "./registry.js";
-import { clamp } from "./utils.js";
+import { httpRegistryAgent, getLocalRegistryURL } from "./registry";
+import { clamp } from "./utils";
 
 export interface NpmRegistryMetadata {
   db_name: string;
