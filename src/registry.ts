@@ -35,7 +35,6 @@ export function loadRegistryURLFromLocalSystem(): string {
     const command = `npm${isWindows ? ".cmd" : ""}`;
 
     const stdout = spawnSync(command, ["config", "get", "registry"]).stdout.toString().trim();
-    console.log("stdout: ", stdout);
     const newRegistryURL = stdout === "" ? getNpmRegistryURL() : stdout;
 
     return setLocalRegistryURL(newRegistryURL);
