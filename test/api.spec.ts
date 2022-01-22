@@ -1,3 +1,6 @@
+// Import Third-party Dependencies
+import { expect } from "chai";
+
 // Import Internal Dependencies
 import {
   metadata,
@@ -14,7 +17,7 @@ describe("metadata", () => {
   it("should return metadata for the npm registry", async() => {
     const { db_name: dbName } = await metadata();
 
-    expect(dbName).toBe("registry");
+    expect(dbName).equal("registry");
   });
 });
 
@@ -22,7 +25,7 @@ describe("packument", () => {
   it("should return packument data about the provided registry", async() => {
     const { name } = await packument(kDefaultPackageName);
 
-    expect(name).toBe(kDefaultPackageName);
+    expect(name).equal(kDefaultPackageName);
   });
 
   it("should throw if the package dosn't exist", async() => {
@@ -30,7 +33,7 @@ describe("packument", () => {
       await packument(kFakePackageName);
     }
     catch (error) {
-      expect(error.statusMessage).toBe("Not Found");
+      expect(error.statusMessage).equal("Not Found");
     }
   });
 });
@@ -39,7 +42,7 @@ describe("packumentVersion", () => {
   it("should return packument data for provided version", async() => {
     const { version } = await packumentVersion(kDefaultPackageName, kDefaultPackageVersion);
 
-    expect(version).toBe(kDefaultPackageVersion);
+    expect(version).equal(kDefaultPackageVersion);
   });
 
   it("should throw if the package dosn't exist", async() => {
@@ -47,7 +50,7 @@ describe("packumentVersion", () => {
       await packumentVersion(kFakePackageName, kDefaultPackageVersion);
     }
     catch (error) {
-      expect(error.data).toBe("Not Found");
+      expect(error.data).equal("Not Found");
     }
   });
 
@@ -58,7 +61,7 @@ describe("packumentVersion", () => {
       await packumentVersion(kDefaultPackageName, fakePackageVersion);
     }
     catch (error) {
-      expect(error.data).toBe(`version not found: ${fakePackageVersion}`);
+      expect(error.data).equal(`version not found: ${fakePackageVersion}`);
     }
   });
 });
