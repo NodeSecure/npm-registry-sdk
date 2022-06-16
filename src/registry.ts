@@ -6,6 +6,7 @@ import { Agent } from "@myunisoft/httpie";
 
 // CONSTANTS
 const kNpmRegistryURL = new URL("https://registry.npmjs.org");
+const kNpmAPIURL = new URL("https://api.npmjs.org");
 const kDefaultMaxRegistryConnections = 15;
 
 // VARS
@@ -43,3 +44,8 @@ export function loadRegistryURLFromLocalSystem(): string {
     return getNpmRegistryURL();
   }
 }
+
+export function getNpmAPIURL(): string {
+  return kNpmAPIURL.href;
+}
+
