@@ -17,7 +17,7 @@ export async function downloads(
     throw new TypeError("Argument `pkgName` must be a non empty string");
   }
   const url = new URL(`/downloads/point/${period}/${pkgName}`, getNpmAPIURL());
-  const { data } = await httpClient.get(url);
+  const { data } = await httpClient.get(url, { agent: httpRegistryAgent });
   return data;
 }
 

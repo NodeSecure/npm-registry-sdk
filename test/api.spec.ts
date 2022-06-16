@@ -30,7 +30,8 @@ describe('downloads', () => {
     await downloads(pkg, undefined, httpClient as any);
 
     const expectedUrl = new URL(`https://api.npmjs.org/downloads/point/${defaultPeriod}/${pkg}`) 
-    expect(get.calls.at(0)).deep.equal([expectedUrl]);
+    const [firstArg] = get.calls.at(0) as unknown[];
+    expect(firstArg).deep.equal(expectedUrl);
   });
 
   it('should call httpClient.get with one of three valid periods', async () => {
@@ -43,7 +44,8 @@ describe('downloads', () => {
       await downloads(pkg, period, httpClient as any);
 
       const expectedUrl = new URL(`https://api.npmjs.org/downloads/point/${period}/${pkg}`) 
-      expect(get.calls.at(count++)).deep.equal([expectedUrl]);
+      const [firstArg] = get.calls.at(count++) as unknown[];
+      expect(firstArg).deep.equal(expectedUrl);
     }
   });
 
