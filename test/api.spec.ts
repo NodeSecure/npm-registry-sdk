@@ -1,7 +1,7 @@
 // Import Third-party Dependencies
-import chai, { expect } from 'chai';
-import { spy } from 'tinyspy';
-import chaiAsPromised from 'chai-as-promised';
+import chai, { expect } from "chai";
+import { spy } from "tinyspy";
+import chaiAsPromised from "chai-as-promised";
 
 // Import Internal Dependencies
 import {
@@ -20,59 +20,65 @@ const kDefaultPackageVersion = "1.0.0";
 const kDefaultPackageName = "@nodesecure/npm-registry-sdk";
 const kFakePackageName = (Math.random() * 10).toString();
 
-describe('downloads', () => {
-  it('should call httpClient.get within pkg argument and default period', async () => {
-    const get = spy(() => ({ downloads: { total: 1 } }));
+describe("downloads", () => {
+  it("should call httpClient.get within pkg argument and default period", async() => {
+    const get = spy(() => {
+      return { downloads: { total: 1 } };
+    });
     const httpClient = { get };
-    const defaultPeriod = 'last-week';
+    const defaultPeriod = "last-week";
 
     const pkg = "rimraf";
     await downloads(pkg, undefined, httpClient as any);
 
-    const expectedUrl = new URL(`https://api.npmjs.org/downloads/point/${defaultPeriod}/${pkg}`) 
+    const expectedUrl = new URL(`https://api.npmjs.org/downloads/point/${defaultPeriod}/${pkg}`);
     const [firstArg] = get.calls.at(0) as unknown[];
     expect(firstArg).deep.equal(expectedUrl);
   });
 
-  it('should call httpClient.get with one of three valid periods', async () => {
-    const get = spy(() => ({ downloads: { total: 1 } }));
+  it("should call httpClient.get with one of three valid periods", async() => {
+    const get = spy(() => {
+      return { downloads: { total: 1 } };
+    });
     const httpClient = { get };
 
     let count = 0;
-    for (const period of ['last-week', 'last-month', 'last-day'] as Period[]) {
+    for (const period of ["last-week", "last-month", "last-day"] as Period[]) {
       const pkg = "rimraf";
       await downloads(pkg, period, httpClient as any);
 
-      const expectedUrl = new URL(`https://api.npmjs.org/downloads/point/${period}/${pkg}`) 
+      const expectedUrl = new URL(`https://api.npmjs.org/downloads/point/${period}/${pkg}`);
       const [firstArg] = get.calls.at(count++) as unknown[];
       expect(firstArg).deep.equal(expectedUrl);
     }
   });
 
-  it('should throw error if pkg is not defined', async () => {
+  it("should throw error if pkg is not defined", async() => {
     const undefinedPkg = undefined;
 
     await expect(downloads(undefinedPkg as any, undefined, {} as any))
-      .to.eventually.be.rejectedWith(TypeError, 'Argument `pkgName` must be a non empty string');
+      .to.eventually.be.rejectedWith(TypeError, "Argument `pkgName` must be a non empty string");
   });
-  
-  it('should throw error if pkg is not a string', async () => {
+
+  it("should throw error if pkg is not a string", async() => {
     const wrongTypedPkg = 32;
 
     await expect(downloads(wrongTypedPkg as any, undefined, {} as any))
-      .to.eventually.be.rejectedWith(TypeError, 'Argument `pkgName` must be a non empty string');
+      .to.eventually.be.rejectedWith(TypeError, "Argument `pkgName` must be a non empty string");
   });
-  
-  it('should throw error if pkg is an empty string', async () => {
+
+  it("should throw error if pkg is an empty string", async() => {
     const wrongTypedPkg = 32;
 
     await expect(downloads(wrongTypedPkg as any, undefined, {} as any))
-      .to.eventually.be.rejectedWith(TypeError, 'Argument `pkgName` must be a non empty string');
+      .to.eventually.be.rejectedWith(TypeError, "Argument `pkgName` must be a non empty string");
   });
 
-  it('should return response.data from httpClient.get', async () => {
+  it("should return response.data from httpClient.get", async() => {
     const payload = { downloads: { total: 1 } };
-    const get = spy(() => ({ data: payload }));
+    const get = spy(() => {
+      return { data: payload };
+    });
     const httpClient = { get };
 
     const pkg = "rimraf";

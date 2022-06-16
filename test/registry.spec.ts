@@ -1,7 +1,7 @@
 /* eslint-disable no-sync */
 
 // Import Third-party Dependencies
-import { expect } from 'chai';
+import { expect } from "chai";
 
 // Import Node.js Dependencies
 // import child_process from "child_process";
@@ -10,7 +10,7 @@ import { expect } from 'chai';
 import {
   getNpmRegistryURL,
   getLocalRegistryURL,
-  setLocalRegistryURL,
+  setLocalRegistryURL
 //  loadRegistryURLFromLocalSystem
 } from "../src/registry";
 
@@ -54,7 +54,7 @@ describe("setLocalRegistryURL", () => {
   });
 });
 
-//describe("loadRegistryURLFromLocalSystem", () => {
+// describe("loadRegistryURLFromLocalSystem", () => {
 //  beforeEach(() => {
 //    jest.clearAllMocks();
 //  });
@@ -80,4 +80,4 @@ describe("setLocalRegistryURL", () => {
 //    expect(getLocalRegistryURL()).deep.equal(kDefaultNpmRegistry);
 //    expect(mockedChildproc.spawnSync).toHaveBeenCalledTimes(1);
 //  });
-//});
+// });

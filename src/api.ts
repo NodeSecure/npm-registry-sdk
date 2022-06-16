@@ -16,8 +16,8 @@ interface NpmPackageDownload {
 }
 
 export async function downloads(
-  pkgName: string, 
-  period: Period = "last-week", 
+  pkgName: string,
+  period: Period = "last-week",
   httpClient = httpie
 ): Promise<NpmPackageDownload> {
   if (typeof pkgName !== "string" || pkgName.length === 0) {
@@ -25,6 +25,7 @@ export async function downloads(
   }
   const url = new URL(`/downloads/point/${period}/${pkgName}`, getNpmAPIURL());
   const { data } = await httpClient.get<NpmPackageDownload>(url, { agent: httpRegistryAgent });
+
   return data;
 }
 
