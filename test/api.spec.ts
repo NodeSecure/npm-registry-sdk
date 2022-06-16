@@ -1,20 +1,89 @@
+// Import Third-party Dependencies
+import chai, { expect } from 'chai';
+import { spy } from 'tinyspy';
+import chaiAsPromised from 'chai-as-promised';
+
 // Import Internal Dependencies
 import {
   metadata,
   packument,
-  packumentVersion
+  packumentVersion,
+  downloads,
+  // types
+  Period
 } from "../src/api";
+
+chai.use(chaiAsPromised);
 
 // CONSTANTS
 const kDefaultPackageVersion = "1.0.0";
 const kDefaultPackageName = "@nodesecure/npm-registry-sdk";
 const kFakePackageName = (Math.random() * 10).toString();
 
+describe('downloads', () => {
+  it('should call httpClient.get within pkg argument and default period', async () => {
+    const get = spy(() => ({ downloads: { total: 1 } }));
+    const httpClient = {
+      get,
+    };
+    const defaultPeriod = 'last-week';
+
+    const pkg = "rimraf";
+    await downloads(pkg, undefined, httpClient as any);
+
+    expect(get.calls.at(0)).deep.equal([`https://api.npmjs.org/downloads/point/${defaultPeriod}/${pkg}`]);
+  });
+
+  it('should call httpClient.get with one of three valid periods', async () => {
+    const get = spy(() => ({ downloads: { total: 1 } }));
+    const httpClient = {  get };  
+
+    const pkg = "rimraf";
+    let count = 0;
+    for (const period of ['last-week', 'last-month', 'last-day'] as Period[]) {
+      await downloads(pkg, period, httpClient as any);
+      expect(get.calls.at(count++)).deep.equal([`https://api.npmjs.org/downloads/point/${period}/${pkg}`]);
+    }
+  });
+
+  it('should throw error if pkg is not defined', async () => {
+    const undefinedPkg = undefined;
+
+    await expect(downloads(undefinedPkg as any, undefined, {} as any))
+      .to.eventually.be.rejectedWith(TypeError, 'Argument `pkgName` must be a non empty string');
+  });
+  
+  it('should throw error if pkg is not a string', async () => {
+    const wrongTypedPkg = 32;
+
+    await expect(downloads(wrongTypedPkg as any, undefined, {} as any))
+      .to.eventually.be.rejectedWith(TypeError, 'Argument `pkgName` must be a non empty string');
+  });
+  
+  it('should throw error if pkg is an empty string', async () => {
+    const wrongTypedPkg = 32;
+
+    await expect(downloads(wrongTypedPkg as any, undefined, {} as any))
+      .to.eventually.be.rejectedWith(TypeError, 'Argument `pkgName` must be a non empty string');
+  });
+
+  it('should return response.data from httpClient.get', async () => {
+    const payload = { downloads: { total: 1 } };
+    const get = spy(() => ({ data: payload }));
+    const httpClient = { get };
+
+    const pkg = "rimraf";
+    const response = await downloads(pkg, undefined, httpClient as any);
+
+    expect(response).deep.equal(payload);
+  });
+});
+
 describe("metadata", () => {
   it("should return metadata for the npm registry", async() => {
     const { db_name: dbName } = await metadata();
 
-    expect(dbName).toBe("registry");
+    expect(dbName).equal("registry");
   });
 });
 
@@ -22,7 +91,7 @@ describe("packument", () => {
   it("should return packument data about the provided registry", async() => {
     const { name } = await packument(kDefaultPackageName);
 
-    expect(name).toBe(kDefaultPackageName);
+    expect(name).equal(kDefaultPackageName);
   });
 
   it("should throw if the package dosn't exist", async() => {
@@ -30,7 +99,7 @@ describe("packument", () => {
       await packument(kFakePackageName);
     }
     catch (error) {
-      expect(error.statusMessage).toBe("Not Found");
+      expect(error.statusMessage).equal("Not Found");
     }
   });
 });
@@ -39,7 +108,7 @@ describe("packumentVersion", () => {
   it("should return packument data for provided version", async() => {
     const { version } = await packumentVersion(kDefaultPackageName, kDefaultPackageVersion);
 
-    expect(version).toBe(kDefaultPackageVersion);
+    expect(version).equal(kDefaultPackageVersion);
   });
 
   it("should throw if the package dosn't exist", async() => {
@@ -47,7 +116,7 @@ describe("packumentVersion", () => {
       await packumentVersion(kFakePackageName, kDefaultPackageVersion);
     }
     catch (error) {
-      expect(error.data).toBe("Not Found");
+      expect(error.data).equal("Not Found");
     }
   });
 
@@ -58,9 +127,8 @@ describe("packumentVersion", () => {
       await packumentVersion(kDefaultPackageName, fakePackageVersion);
     }
     catch (error) {
-      expect(error.data).toBe(`version not found: ${fakePackageVersion}`);
+      expect(error.data).equal(`version not found: ${fakePackageVersion}`);
     }
   });
 });
-
 

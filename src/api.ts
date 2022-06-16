@@ -6,6 +6,21 @@ import * as httpie from "@myunisoft/httpie";
 import { httpRegistryAgent, getLocalRegistryURL } from "./registry.js";
 import { clamp } from "./utils.js";
 
+export type Period = "last-day" | "last-month" | "last-week";
+
+export async function downloads(
+  pkgName: string, 
+  period: Period = "last-week", 
+  httpClient = httpie
+) {
+  if (typeof pkgName !== "string" || pkgName.length === 0) {
+    throw new TypeError("Argument `pkgName` must be a non empty string");
+  }
+  const url = `https://api.npmjs.org/downloads/point/${period}/${pkgName}`;
+  const { data } = await httpClient.get(url);
+  return data;
+}
+
 export interface NpmRegistryMetadata {
   db_name: string;
   doc_count: number;
