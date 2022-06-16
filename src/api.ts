@@ -8,16 +8,23 @@ import { clamp } from "./utils.js";
 
 export type Period = "last-day" | "last-month" | "last-week";
 
+interface NpmPackageDownload {
+  downloads: number;
+  start: string;
+  end: string;
+  package: string;
+}
+
 export async function downloads(
   pkgName: string, 
   period: Period = "last-week", 
   httpClient = httpie
-) {
+): Promise<NpmPackageDownload> {
   if (typeof pkgName !== "string" || pkgName.length === 0) {
     throw new TypeError("Argument `pkgName` must be a non empty string");
   }
   const url = new URL(`/downloads/point/${period}/${pkgName}`, getNpmAPIURL());
-  const { data } = await httpClient.get(url, { agent: httpRegistryAgent });
+  const { data } = await httpClient.get<NpmPackageDownload>(url, { agent: httpRegistryAgent });
   return data;
 }
 
