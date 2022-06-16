@@ -8,7 +8,7 @@ import { clamp } from "./utils.js";
 
 export type Period = "last-day" | "last-month" | "last-week";
 
-interface NpmPackageDownload {
+export interface NpmPackageDownload {
   downloads: number;
   start: string;
   end: string;
