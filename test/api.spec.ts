@@ -23,26 +23,27 @@ const kFakePackageName = (Math.random() * 10).toString();
 describe('downloads', () => {
   it('should call httpClient.get within pkg argument and default period', async () => {
     const get = spy(() => ({ downloads: { total: 1 } }));
-    const httpClient = {
-      get,
-    };
+    const httpClient = { get };
     const defaultPeriod = 'last-week';
 
     const pkg = "rimraf";
     await downloads(pkg, undefined, httpClient as any);
 
-    expect(get.calls.at(0)).deep.equal([new URL(`https://api.npmjs.org/downloads/point/${defaultPeriod}/${pkg}`)]);
+    const expectedUrl = new URL(`https://api.npmjs.org/downloads/point/${defaultPeriod}/${pkg}`) 
+    expect(get.calls.at(0)).deep.equal([expectedUrl]);
   });
 
   it('should call httpClient.get with one of three valid periods', async () => {
     const get = spy(() => ({ downloads: { total: 1 } }));
-    const httpClient = {  get };  
+    const httpClient = { get };
 
-    const pkg = "rimraf";
     let count = 0;
     for (const period of ['last-week', 'last-month', 'last-day'] as Period[]) {
+      const pkg = "rimraf";
       await downloads(pkg, period, httpClient as any);
-      expect(get.calls.at(count++)).deep.equal([new URL(`https://api.npmjs.org/downloads/point/${period}/${pkg}`)]);
+
+      const expectedUrl = new URL(`https://api.npmjs.org/downloads/point/${period}/${pkg}`) 
+      expect(get.calls.at(count++)).deep.equal([expectedUrl]);
     }
   });
 
