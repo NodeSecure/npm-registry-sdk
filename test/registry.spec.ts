@@ -10,13 +10,26 @@ import { expect } from "chai";
 import {
   getNpmRegistryURL,
   getLocalRegistryURL,
-  setLocalRegistryURL
+  setLocalRegistryURL,
+  buildDownloadsURL
 //  loadRegistryURLFromLocalSystem
 } from "../src/registry";
 
 // CONSTANTS
 const kDefaultNpmRegistry = "https://registry.npmjs.org/";
 const kGoogleURL = "https://www.google.fr/";
+
+describe("buildDownloadsURL", () => {
+  it("should call httpClient.get with one of three valid periods", async() => {
+    for (const period of ["last-week", "last-month", "last-day"]) {
+      const pkg = "rimraf";
+      const url = buildDownloadsURL(pkg, period);
+
+      const expectedUrl = `https://api.npmjs.org/downloads/point/${period}/${pkg}`;
+      expect(url).deep.equal(expectedUrl);
+    }
+  });
+});
 
 describe("getNpmRegistryURL", () => {
   it("should return the default npm registry addr", () => {

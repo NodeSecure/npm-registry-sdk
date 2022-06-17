@@ -46,6 +46,11 @@ export function loadRegistryURLFromLocalSystem(): string {
 }
 
 export function getNpmAPIURL(): string {
-  return kNpmAPIURL.href;
+  return kNpmAPIURL.href.slice(0, -1);
 }
 
+export function buildDownloadsURL(pkgName: string, period: string): string {
+  const url = new URL(`/downloads/point/${period}/${pkgName}`, getNpmAPIURL());
+
+  return url.href;
+}

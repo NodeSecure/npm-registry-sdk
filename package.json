@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/NodeSecure/npm-registry-sdk#readme",
   "dependencies": {
-    "@myunisoft/httpie": "^1.4.0",
+    "@myunisoft/httpie": "^1.7.0",
     "@npm/types": "^1.0.1"
   },
   "devDependencies": {
