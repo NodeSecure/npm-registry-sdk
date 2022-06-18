@@ -58,6 +58,17 @@ interface PackumentOptions {
 ### packumentVersion(name: string, version: string, options?: packumentOptions): Promise\<npm.PackumentVersion>
 
 
+### downloads(pkgName: string, period: Period = "last-week"): Promise< NpmPackageDownload >
+
+```ts
+interface NpmPackageDownload {
+  downloads: number;
+  start: string;
+  end: string;
+  package: string;
+}
+```
+
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
