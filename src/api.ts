@@ -3,8 +3,31 @@ import * as npm from "@npm/types";
 
 // Import Internal Dependencies
 import * as httpie from "@myunisoft/httpie";
-import { httpRegistryAgent, getLocalRegistryURL } from "./registry.js";
+import { httpRegistryAgent, getLocalRegistryURL, buildDownloadsURL } from "./registry.js";
 import { clamp } from "./utils.js";
+
+export type Period = "last-day" | "last-month" | "last-week";
+
+export interface NpmPackageDownload {
+  downloads: number;
+  start: string;
+  end: string;
+  package: string;
+}
+
+export async function downloads(
+  pkgName: string,
+  period: Period = "last-week"
+): Promise<NpmPackageDownload> {
+  if (typeof pkgName !== "string" || pkgName.length === 0) {
+    throw new TypeError("Argument `pkgName` must be a non empty string");
+  }
+
+  const url = buildDownloadsURL(pkgName, period);
+  const { data } = await httpie.get<NpmPackageDownload>(url);
+
+  return data;
+}
 
 export interface NpmRegistryMetadata {
   db_name: string;
