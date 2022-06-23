@@ -42,9 +42,9 @@ describe("downloads", () => {
   });
 
   it("should throw error if pkg is an empty string", async() => {
-    const wrongTypedPkg = 32;
+    const emptyStringPkg = "";
 
-    await expect(downloads(wrongTypedPkg as any))
+    await expect(downloads(emptyStringPkg))
       .to.eventually.be.rejectedWith(TypeError, "Argument `pkgName` must be a non empty string");
   });
 
