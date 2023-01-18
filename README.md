@@ -1,10 +1,11 @@
 # npm-registry-sdk
-![version](https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/NodeSecure/npm-registry-sdk/master/package.json&query=$.version&label=Version)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/NodeSecure/npm-registry-sdk/commit-activity)
+
+![version](https://img.shields.io/badge/dynamic/json.svg?style=for-the-badge&url=https://raw.githubusercontent.com/NodeSecure/npm-registry-sdk/master/package.json&query=$.version&label=Version)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/NodeSecure/npm-registry-sdk/commit-activity)
 [![OpenSSF
-Scorecard](https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk/badge)](https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk)
-[![mit](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/NodeSecure/npm-registry-sdk/blob/master/LICENSE)
-![build](https://img.shields.io/github/actions/workflow/status/NodeSecure/npm-registry-sdk/node.js.yml)
+Scorecard](https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk/badge?style=for-the-badge)](https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk)
+[![mit](https://img.shields.io/github/license/Naereen/StrapDown.js.svg?style=for-the-badge)](https://github.com/NodeSecure/npm-registry-sdk/blob/master/LICENSE)
+![build](https://img.shields.io/github/actions/workflow/status/NodeSecure/npm-registry-sdk/node.js.yml?style=for-the-badge)
 
 Node.js SDK to fetch data from the npm API.
 
@@ -23,13 +24,18 @@ $ yarn add @nodesecure/npm-registry-sdk
 ```ts
 import Registry from "@nodesecure/npm-registry-sdk";
 ```
+
 ## API
 
 ### getNpmRegistryURL(): string
+
 ### getLocalRegistryURL(): string
+
 ### setLocalRegistryURL(value: string | URL): string
+
 ### loadRegistryURLFromLocalSystem(): string
-### metadata(): Promise\<NpmRegistryMetadata> 
+
+### metadata(): Promise\<NpmRegistryMetadata>
 
 ```ts
 interface NpmRegistryMetadata {
@@ -57,7 +63,6 @@ interface PackumentOptions {
 
 ### packumentVersion(name: string, version: string, options?: packumentOptions): Promise\<npm.PackumentVersion>
 
-
 ### downloads(pkgName: string, period: Period = "last-week"): Promise< NpmPackageDownload >
 
 ```ts
@@ -72,7 +77,9 @@ interface NpmPackageDownload {
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -96,4 +103,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## License
+
 MIT
