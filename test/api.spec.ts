@@ -8,9 +8,9 @@ import {
   packument,
   packumentVersion,
   downloads
-} from "../src/api";
-import { getNpmAPIURL } from "../src/registry";
-import { kHttpClientHeaders, setupHttpAgentMock } from "./httpie-mock";
+} from "../src/index.js";
+import * as utils from "../src/utils.js";
+import { kHttpClientHeaders, setupHttpAgentMock } from "./httpie-mock.js";
 
 // CONSTANTS
 const kDefaultPackageVersion = "1.0.0";
@@ -20,7 +20,7 @@ const kFakePackageName = (Math.random() * 10).toString();
 chai.use(chaiAsPromised);
 
 describe("downloads", () => {
-  const apiUrl = getNpmAPIURL();
+  const apiUrl = utils.getNpmApi().href.slice(0, -1);
   const [dispatcher, close] = setupHttpAgentMock(apiUrl);
 
   after(() => {
@@ -48,12 +48,14 @@ describe("downloads", () => {
       .to.eventually.be.rejectedWith(TypeError, "Argument `pkgName` must be a non empty string");
   });
 
-  it("should return the last-week by default", async() => {
+  it("should return the 'last-week' period by default", async() => {
     const pkg = "rimraf";
     const payload = { downloads: 1 };
 
     dispatcher
-      .intercept({ path: `/downloads/point/last-week/${pkg}` })
+      .intercept({
+        path: `/downloads/point/last-week/${pkg}`
+      })
       .reply(200, payload, kHttpClientHeaders);
 
     const response = await downloads(pkg);
@@ -61,7 +63,7 @@ describe("downloads", () => {
     expect(response).deep.equal(payload);
   });
 
-  it("it should return period asked in paramter", async() => {
+  it("should return period provided as function argument", async() => {
     const pkg = "rimraf";
     const period = "last-day";
     const payload = { downloads: 1 };

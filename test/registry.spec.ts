@@ -1,17 +1,14 @@
-/* eslint-disable no-sync */
-
 // Import Third-party Dependencies
 import { expect } from "chai";
 
 // Import Node.js Dependencies
-// import child_process from "child_process";
+// import child_process from "node:child_process";
 
 // Import Internal Dependencies
 import {
   getNpmRegistryURL,
   getLocalRegistryURL,
-  setLocalRegistryURL,
-  buildDownloadsURL
+  setLocalRegistryURL
 //  loadRegistryURLFromLocalSystem
 } from "../src/registry";
 
@@ -19,51 +16,41 @@ import {
 const kDefaultNpmRegistry = "https://registry.npmjs.org/";
 const kGoogleURL = "https://www.google.fr/";
 
-describe("buildDownloadsURL", () => {
-  it("should call httpClient.get with one of three valid periods", async() => {
-    for (const period of ["last-week", "last-month", "last-day"]) {
-      const pkg = "rimraf";
-      const url = buildDownloadsURL(pkg, period);
+describe("NPM Registry", () => {
+  describe("getNpmRegistryURL", () => {
+    it("should return the default npm registry addr", () => {
+      const result = getNpmRegistryURL();
 
-      const expectedUrl = `https://api.npmjs.org/downloads/point/${period}/${pkg}`;
-      expect(url).deep.equal(expectedUrl);
-    }
-  });
-});
-
-describe("getNpmRegistryURL", () => {
-  it("should return the default npm registry addr", () => {
-    const result = getNpmRegistryURL();
-
-    expect(result).deep.equal(kDefaultNpmRegistry);
-  });
-});
-
-describe("getLocalRegistryURL", () => {
-  it("should return the default npm registry addr when no value has been previously set", () => {
-    const result = getLocalRegistryURL();
-
-    expect(result).deep.equal(kDefaultNpmRegistry);
-  });
-});
-
-describe("setLocalRegistryURL", () => {
-  it("should return the URL itself and update the local value", () => {
-    const result = setLocalRegistryURL(kGoogleURL);
-
-    expect(result).deep.equal(kGoogleURL);
-    expect(getLocalRegistryURL()).deep.equal(kGoogleURL);
+      expect(result).deep.equal(kDefaultNpmRegistry);
+    });
   });
 
-  it("should accept a WHATWG URL as argument", () => {
-    const result = setLocalRegistryURL(new URL(kGoogleURL));
+  describe("getLocalRegistryURL", () => {
+    it("should return the default npm registry addr when no value has been previously set", () => {
+      const result = getLocalRegistryURL();
 
-    expect(result).deep.equal(kGoogleURL);
-    expect(getLocalRegistryURL()).deep.equal(kGoogleURL);
+      expect(result).deep.equal(kDefaultNpmRegistry);
+    });
   });
 
-  it("should throw if the string URL is invalid", () => {
-    expect(() => setLocalRegistryURL("foobar")).to.throw();
+  describe("setLocalRegistryURL", () => {
+    it("should return the URL itself and update the local value", () => {
+      const result = setLocalRegistryURL(kGoogleURL);
+
+      expect(result).deep.equal(kGoogleURL);
+      expect(getLocalRegistryURL()).deep.equal(kGoogleURL);
+    });
+
+    it("should accept a WHATWG URL as argument", () => {
+      const result = setLocalRegistryURL(new URL(kGoogleURL));
+
+      expect(result).deep.equal(kGoogleURL);
+      expect(getLocalRegistryURL()).deep.equal(kGoogleURL);
+    });
+
+    it("should throw if the string URL is invalid", () => {
+      expect(() => setLocalRegistryURL("foobar")).to.throw();
+    });
   });
 });
 

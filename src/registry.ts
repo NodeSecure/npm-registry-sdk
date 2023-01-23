@@ -1,20 +1,11 @@
 // Import Node.js Dependencies
 import { spawnSync } from "child_process";
 
-// Import Third-party Dependencies
-import { Agent } from "@myunisoft/httpie";
-
 // CONSTANTS
 const kNpmRegistryURL = new URL("https://registry.npmjs.org");
-const kNpmAPIURL = new URL("https://api.npmjs.org");
-const kDefaultMaxRegistryConnections = 15;
 
 // VARS
 let localNPMRegistry = kNpmRegistryURL.href;
-
-export const httpRegistryAgent = new Agent({
-  connections: kDefaultMaxRegistryConnections
-});
 
 export function getNpmRegistryURL(): string {
   return kNpmRegistryURL.href;
@@ -43,14 +34,4 @@ export function loadRegistryURLFromLocalSystem(): string {
   catch {
     return getNpmRegistryURL();
   }
-}
-
-export function getNpmAPIURL(): string {
-  return kNpmAPIURL.href.slice(0, -1);
-}
-
-export function buildDownloadsURL(pkgName: string, period: string): string {
-  const url = new URL(`/downloads/point/${period}/${pkgName}`, getNpmAPIURL());
-
-  return url.href;
 }
