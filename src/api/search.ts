@@ -62,7 +62,7 @@ export interface SearchOptions {
   token: string;
 }
 
-export async function search(criteria: SearchCriteria, options?: SearchOptions): Promise<SearchResult> {
+export async function search(criteria: SearchCriteria, options?: SearchOptions) {
   const { text, size, from, quality, popularity, maintenance } = criteria;
   const query = new URL("/-/v1/search", getLocalRegistryURL());
 
@@ -90,5 +90,5 @@ export async function search(criteria: SearchCriteria, options?: SearchOptions):
     authorization: options?.token
   });
 
-  return data;
+  return data as SearchResult;
 }
