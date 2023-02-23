@@ -85,10 +85,10 @@ export async function search(criteria: SearchCriteria, options?: SearchOptions) 
     query.searchParams.set("maintenance", String(utils.clamp(maintenance, 0, 1)));
   }
 
-  const { data } = await httpie.get(query, {
+  const { data } = await httpie.get<SearchResult>(query, {
     agent: getHttpAgent(),
     authorization: options?.token
   });
 
-  return data as SearchResult;
+  return data;
 }
