@@ -8,17 +8,17 @@ import * as utils from "../utils.js";
 
 export interface SearchCriteria {
   /**	full-text search to apply **/
-  text: string;
+  text?: string;
   /** how many results should be returned (default 20, max 250) **/
-  size: number;
+  size?: number;
   /** offset to return results from **/
-  from: number;
+  from?: number;
   /** how much of an effect should quality have on search results **/
-  quality: number;
+  quality?: number;
   /** how much of an effect should popularity have on search results **/
-  popularity: number;
+  popularity?: number;
   /** how much of an effect should maintenance have on search results **/
-  maintenance: number;
+  maintenance?: number;
 }
 
 export interface SearchMaintainer {
