@@ -33,11 +33,13 @@ export interface SearchResult {
       scope: string;
       version: string;
       description: string;
+      keywords?: string[]
       date: string;
       links: {
         npm: string;
-        homepage: string;
-        bugs: string;
+        homepage?: string;
+        bugs?: string;
+        repository?: string;
       }
       author: SearchMaintainer & { name?: string };
       publisher: SearchMaintainer;
