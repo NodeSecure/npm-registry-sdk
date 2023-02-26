@@ -77,9 +77,7 @@ interface NpmPackageDownload {
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -88,13 +86,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://www.linkedin.com/in/thomas-gentilhomme/"><img src="https://avatars.githubusercontent.com/u/4438263?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Gentilhomme</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=fraxken" title="Code">💻</a> <a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=fraxken" title="Documentation">📖</a> <a href="https://github.com/NodeSecure/npm-registry-sdk/pulls?q=is%3Apr+reviewed-by%3Afraxken" title="Reviewed Pull Requests">👀</a> <a href="#security-fraxken" title="Security">🛡️</a> <a href="https://github.com/NodeSecure/npm-registry-sdk/issues?q=author%3Afraxken" title="Bug reports">🐛</a></td>
-    <td align="center"><a href="https://github.com/QuentinLpy"><img src="https://avatars.githubusercontent.com/u/31780359?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Quentin Lepateley</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=QuentinLpy" title="Code">💻</a> <a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=QuentinLpy" title="Documentation">📖</a> <a href="https://github.com/NodeSecure/npm-registry-sdk/pulls?q=is%3Apr+reviewed-by%3AQuentinLpy" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="https://github.com/Rossb0b"><img src="https://avatars.githubusercontent.com/u/39910164?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Nicolas Hallaert</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=Rossb0b" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://github.com/tekeuange23"><img src="https://avatars.githubusercontent.com/u/35274201?v=4?s=100" width="100px;" alt=""/><br /><sub><b>tekeuange23</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=tekeuange23" title="Code">💻</a></td>
-    <td align="center"><a href="http://tonygo.dev"><img src="https://avatars.githubusercontent.com/u/22824417?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tony Gorez</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=tony-go" title="Code">💻</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/thomas-gentilhomme/"><img src="https://avatars.githubusercontent.com/u/4438263?v=4?s=100" width="100px;" alt="Gentilhomme"/><br /><sub><b>Gentilhomme</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=fraxken" title="Code">💻</a> <a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=fraxken" title="Documentation">📖</a> <a href="https://github.com/NodeSecure/npm-registry-sdk/pulls?q=is%3Apr+reviewed-by%3Afraxken" title="Reviewed Pull Requests">👀</a> <a href="#security-fraxken" title="Security">🛡️</a> <a href="https://github.com/NodeSecure/npm-registry-sdk/issues?q=author%3Afraxken" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/QuentinLpy"><img src="https://avatars.githubusercontent.com/u/31780359?v=4?s=100" width="100px;" alt="Quentin Lepateley"/><br /><sub><b>Quentin Lepateley</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=QuentinLpy" title="Code">💻</a> <a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=QuentinLpy" title="Documentation">📖</a> <a href="https://github.com/NodeSecure/npm-registry-sdk/pulls?q=is%3Apr+reviewed-by%3AQuentinLpy" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Rossb0b"><img src="https://avatars.githubusercontent.com/u/39910164?v=4?s=100" width="100px;" alt="Nicolas Hallaert"/><br /><sub><b>Nicolas Hallaert</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=Rossb0b" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/tekeuange23"><img src="https://avatars.githubusercontent.com/u/35274201?v=4?s=100" width="100px;" alt="tekeuange23"/><br /><sub><b>tekeuange23</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=tekeuange23" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://tonygo.dev"><img src="https://avatars.githubusercontent.com/u/22824417?v=4?s=100" width="100px;" alt="Tony Gorez"/><br /><sub><b>Tony Gorez</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=tony-go" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://hirok.io"><img src="https://avatars.githubusercontent.com/u/1075694?v=4?s=100" width="100px;" alt="hiroki osame"/><br /><sub><b>hiroki osame</b></sub></a><br /><a href="https://github.com/NodeSecure/npm-registry-sdk/commits?author=privatenumber" title="Code">💻</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->
