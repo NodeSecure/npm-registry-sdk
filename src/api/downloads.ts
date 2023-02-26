@@ -4,7 +4,11 @@ import * as httpie from "@myunisoft/httpie";
 // Import Internal Dependencies
 import * as utils from "../utils.js";
 
-export type Period = "last-day" | "last-month" | "last-week";
+export type Period =
+  | "last-day"
+  | "last-month"
+  | "last-week"
+  | (string & Record<never, never>); // Trick to combine literal types with primitive without sacrificing auto-complete
 
 export interface NpmPackageDownload {
   downloads: number;
