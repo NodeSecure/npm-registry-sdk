@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
-    "test": "node --no-warnings --loader tsx --test test/api.spec.ts",
+    "test": "node --no-warnings --loader tsx --test test/api.spec.ts && node --no-warnings --loader tsx --test test/registry.spec.ts",
     "lint": "eslint ."
   },
   "repository": {
