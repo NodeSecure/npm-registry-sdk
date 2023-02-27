@@ -1,6 +1,6 @@
 // Import Third-party Dependencies
-import { expect } from "chai";
-
+import { describe, it } from "node:test";
+import assert from "node:assert";
 // Import Node.js Dependencies
 // import child_process from "node:child_process";
 
@@ -21,7 +21,7 @@ describe("NPM Registry", () => {
     it("should return the default npm registry addr", () => {
       const result = getNpmRegistryURL();
 
-      expect(result).deep.equal(kDefaultNpmRegistry);
+      assert.deepEqual(result,kDefaultNpmRegistry);
     });
   });
 
@@ -29,7 +29,7 @@ describe("NPM Registry", () => {
     it("should return the default npm registry addr when no value has been previously set", () => {
       const result = getLocalRegistryURL();
 
-      expect(result).deep.equal(kDefaultNpmRegistry);
+      assert.deepEqual(result,kDefaultNpmRegistry);
     });
   });
 
@@ -37,19 +37,25 @@ describe("NPM Registry", () => {
     it("should return the URL itself and update the local value", () => {
       const result = setLocalRegistryURL(kGoogleURL);
 
-      expect(result).deep.equal(kGoogleURL);
-      expect(getLocalRegistryURL()).deep.equal(kGoogleURL);
+      assert.deepEqual(result,kGoogleURL);
+      assert.deepEqual(getLocalRegistryURL(),kGoogleURL);
     });
 
     it("should accept a WHATWG URL as argument", () => {
       const result = setLocalRegistryURL(new URL(kGoogleURL));
 
-      expect(result).deep.equal(kGoogleURL);
-      expect(getLocalRegistryURL()).deep.equal(kGoogleURL);
+      assert.deepEqual(result,kGoogleURL);
+      assert.deepEqual(getLocalRegistryURL(),kGoogleURL);
     });
 
     it("should throw if the string URL is invalid", () => {
-      expect(() => setLocalRegistryURL("foobar")).to.throw();
+      try{
+        setLocalRegistryURL("foobar");
+      }
+      catch (error) {
+        console.log(error.message)
+        assert.strictEqual(error.message,"Invalid URL")
+      }
     });
   });
 });
