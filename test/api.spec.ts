@@ -1,6 +1,6 @@
-// Import Third-party Dependencies
-import chai, { expect } from "chai";
-import chaiAsPromised from "chai-as-promised";
+// Import Node.js Dependencies
+import { describe, it, after } from "node:test";
+import assert from "node:assert";
 
 // Import Internal Dependencies
 import {
@@ -17,8 +17,6 @@ const kDefaultPackageVersion = "1.0.0";
 const kDefaultPackageName = "@nodesecure/npm-registry-sdk";
 const kFakePackageName = (Math.random() * 10).toString();
 
-chai.use(chaiAsPromised);
-
 describe("downloads", () => {
   const apiUrl = utils.getNpmApi().href.slice(0, -1);
   const [dispatcher, close] = setupHttpAgentMock(apiUrl);
@@ -30,22 +28,28 @@ describe("downloads", () => {
   it("should throw error if pkg is not defined", async() => {
     const undefinedPkg = undefined;
 
-    await expect(downloads(undefinedPkg as any))
-      .to.eventually.be.rejectedWith(TypeError, "Argument `pkgName` must be a non empty string");
+    assert.rejects(
+      async() => await downloads(undefinedPkg as any),
+      { name: "TypeError", message: "Argument `pkgName` must be a non empty string" }
+    );
   });
 
   it("should throw error if pkg is not a string", async() => {
     const wrongTypedPkg = 32;
 
-    await expect(downloads(wrongTypedPkg as any))
-      .to.eventually.be.rejectedWith(TypeError, "Argument `pkgName` must be a non empty string");
+    assert.rejects(
+      async() => await downloads(wrongTypedPkg as any),
+      { name: "TypeError", message: "Argument `pkgName` must be a non empty string" }
+    );
   });
 
   it("should throw error if pkg is an empty string", async() => {
     const emptyStringPkg = "";
 
-    await expect(downloads(emptyStringPkg))
-      .to.eventually.be.rejectedWith(TypeError, "Argument `pkgName` must be a non empty string");
+    assert.rejects(
+      async() => await downloads(emptyStringPkg),
+      { name: "TypeError", message: "Argument `pkgName` must be a non empty string" }
+    );
   });
 
   it("should return the 'last-week' period by default", async() => {
@@ -60,7 +64,7 @@ describe("downloads", () => {
 
     const response = await downloads(pkg);
 
-    expect(response).deep.equal(payload);
+    assert.deepEqual(response, payload);
   });
 
   it("should return period provided as function argument", async() => {
@@ -74,7 +78,7 @@ describe("downloads", () => {
 
     const response = await downloads(pkg, period);
 
-    expect(response).deep.equal(payload);
+    assert.deepEqual(response, payload);
   });
 });
 
@@ -82,7 +86,7 @@ describe("metadata", () => {
   it("should return metadata for the npm registry", async() => {
     const { db_name: dbName } = await metadata();
 
-    expect(dbName).equal("registry");
+    assert.equal(dbName, "registry");
   });
 });
 
@@ -90,16 +94,14 @@ describe("packument", () => {
   it("should return packument data about the provided registry", async() => {
     const { name } = await packument(kDefaultPackageName);
 
-    expect(name).equal(kDefaultPackageName);
+    assert.equal(name, kDefaultPackageName);
   });
 
   it("should throw if the package dosn't exist", async() => {
-    try {
-      await packument(kFakePackageName);
-    }
-    catch (error) {
-      expect(error.statusMessage).equal("Not Found");
-    }
+    assert.rejects(
+      async() => await packument(kFakePackageName),
+      { statusMessage: "Not Found" }
+    );
   });
 });
 
@@ -107,27 +109,23 @@ describe("packumentVersion", () => {
   it("should return packument data for provided version", async() => {
     const { version } = await packumentVersion(kDefaultPackageName, kDefaultPackageVersion);
 
-    expect(version).equal(kDefaultPackageVersion);
+    assert.equal(version, kDefaultPackageVersion);
   });
 
   it("should throw if the package dosn't exist", async() => {
-    try {
-      await packumentVersion(kFakePackageName, kDefaultPackageVersion);
-    }
-    catch (error) {
-      expect(error.data).equal("Not Found");
-    }
+    assert.rejects(
+      async() => await packumentVersion(kFakePackageName, kDefaultPackageVersion),
+      { statusMessage: "Not Found" }
+    );
   });
 
   it("should throw if provided package version dosn't exist", async() => {
     const fakePackageVersion = "0.0.0";
 
-    try {
-      await packumentVersion(kDefaultPackageName, fakePackageVersion);
-    }
-    catch (error) {
-      expect(error.data).equal(`version not found: ${fakePackageVersion}`);
-    }
+    assert.rejects(
+      async() => await packumentVersion(kDefaultPackageName, fakePackageVersion),
+      { data: `version not found: ${fakePackageVersion}` }
+    );
   });
 });
 
