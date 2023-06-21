@@ -9,7 +9,7 @@
       "esModuleInterop": true,
       "sourceMap": true,
       "rootDir": "src",
-      "types": ["node", "mocha"]
+      "types": ["node"]
     },
     "include": ["src"],
     "exclude": ["node_modules", "dist"]

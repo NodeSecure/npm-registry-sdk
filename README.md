@@ -33,7 +33,13 @@ import Registry from "@nodesecure/npm-registry-sdk";
 
 ### setLocalRegistryURL(value: string | URL): string
 
-### loadRegistryURLFromLocalSystem(): string
+### loadRegistryURLFromLocalSystem(mixins?: LoadRegistryMixins): string
+
+```ts
+interface LoadRegistryMixins {
+  spawn?: typeof spawnSync;
+}
+```
 
 ### metadata(): Promise\<NpmRegistryMetadata>
 
