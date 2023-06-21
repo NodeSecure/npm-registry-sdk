@@ -8,7 +8,8 @@ export type Period =
   | "last-day"
   | "last-month"
   | "last-week"
-  | (string & Record<never, never>); // Trick to combine literal types with primitive without sacrificing auto-complete
+  // Trick to combine literal types with primitive without sacrificing auto-complete
+  | (string & Record<never, never>);
 
 export interface NpmPackageDownload {
   downloads: number;
