@@ -4,7 +4,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/NodeSecure/npm-registry-sdk/graphs/commit-activity)
 [![OpenSSF
 Scorecard](https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk/badge?style=for-the-badge)](https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk)
-[![mit](https://img.shields.io/github/license/Naereen/StrapDown.js.svg?style=for-the-badge)](https://github.com/NodeSecure/npm-registry-sdk/blob/master/LICENSE)
+[![mit](https://img.shields.io/github/license/NodeSecure/npm-registry-sdk.svg?style=for-the-badge)](https://github.com/NodeSecure/npm-registry-sdk/blob/master/LICENSE)
 ![build](https://img.shields.io/github/actions/workflow/status/NodeSecure/npm-registry-sdk/node.js.yml?style=for-the-badge)
 
 Node.js SDK to fetch data from the npm API.
