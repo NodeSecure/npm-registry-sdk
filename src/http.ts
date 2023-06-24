@@ -1,5 +1,5 @@
 // Import Third-party Dependencies
-import { Agent } from "@myunisoft/httpie";
+import { Agent, MockAgent } from "@myunisoft/httpie";
 
 // CONSTANTS
 const kDefaultMaxRegistryConnections = 15;
@@ -7,13 +7,13 @@ const kDefaultAgent = new Agent({
   connections: kDefaultMaxRegistryConnections
 });
 
-let httpAgent = kDefaultAgent;
+let httpAgent: Agent | MockAgent = kDefaultAgent;
 
 export function getHttpAgent() {
   return httpAgent;
 }
 
-export function setHttpAgent(agent: Agent) {
+export function setHttpAgent(agent: Agent | MockAgent) {
   httpAgent = agent;
 }
 
