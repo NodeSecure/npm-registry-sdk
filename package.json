@@ -1,6 +1,6 @@
 {
   "name": "@nodesecure/npm-registry-sdk",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Node.js SDK to fetch data from the npm API.",
   "private": false,
   "type": "module",
