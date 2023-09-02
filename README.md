@@ -1,11 +1,27 @@
-# npm-registry-sdk
+<p align="center">
+  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/4438263/265200236-271ccda6-82b9-457a-956b-2cb855e2ff68.jpg" alt="@nodesecure/npm-registry-sdk">
+</p>
 
-![version](https://img.shields.io/badge/dynamic/json.svg?style=for-the-badge&url=https://raw.githubusercontent.com/NodeSecure/npm-registry-sdk/master/package.json&query=$.version&label=Version)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/NodeSecure/npm-registry-sdk/graphs/commit-activity)
-[![OpenSSF
-Scorecard](https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk/badge?style=for-the-badge)](https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk)
-[![mit](https://img.shields.io/github/license/NodeSecure/npm-registry-sdk.svg?style=for-the-badge)](https://github.com/NodeSecure/npm-registry-sdk/blob/master/LICENSE)
-![build](https://img.shields.io/github/actions/workflow/status/NodeSecure/npm-registry-sdk/node.js.yml?style=for-the-badge)
+<p align="center">
+    <a href="https://github.com/NodeSecure/npm-registry-sdk">
+      <img src="https://img.shields.io/badge/dynamic/json.svg?style=for-the-badge&url=https://raw.githubusercontent.com/NodeSecure/npm-registry-sdk/master/package.json&query=$.version&label=Version" alt="npm version">
+    </a>
+    <a href="https://github.com/NodeSecure/npm-registry-sdk/graphs/commit-activity">
+      <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge" alt="maintenance">
+    </a>
+    <a href="https://github.com/NodeSecure/npm-registry-sdk/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/NodeSecure/npm-registry-sdk.svg?style=for-the-badge" alt="license">
+    </a>
+    <a href="https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk">
+      <img src="https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk/badge?style=for-the-badge" alt="ossf scorecard">
+    </a>
+    <a href="https://github.com/NodeSecure/npm-registry-sdk/blob/master/LICENSE">
+      <img src="https://img.shields.io/github/license/NodeSecure/npm-registry-sdk.svg?style=for-the-badge" alt="MIT">
+    </a>
+    <a href="https://github.com/NodeSecure/npm-registry-sdk/actions?query=workflow%3A%22Node.js+CI%22">
+      <img src="https://img.shields.io/github/actions/workflow/status/NodeSecure/npm-registry-sdk/node.js.yml?style=for-the-badge" alt="github ci workflow">
+    </a>
+</p>
 
 Node.js SDK to fetch data from the npm API.
 
