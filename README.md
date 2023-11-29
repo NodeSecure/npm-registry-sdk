@@ -15,9 +15,6 @@
     <a href="https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk">
       <img src="https://api.securityscorecards.dev/projects/github.com/NodeSecure/npm-registry-sdk/badge?style=for-the-badge" alt="ossf scorecard">
     </a>
-    <a href="https://github.com/NodeSecure/npm-registry-sdk/blob/master/LICENSE">
-      <img src="https://img.shields.io/github/license/NodeSecure/npm-registry-sdk.svg?style=for-the-badge" alt="MIT">
-    </a>
     <a href="https://github.com/NodeSecure/npm-registry-sdk/actions?query=workflow%3A%22Node.js+CI%22">
       <img src="https://img.shields.io/github/actions/workflow/status/NodeSecure/npm-registry-sdk/node.js.yml?style=for-the-badge" alt="github ci workflow">
     </a>
