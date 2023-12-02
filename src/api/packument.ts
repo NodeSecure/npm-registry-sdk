@@ -1,10 +1,12 @@
 // Import Third-party Dependencies
-import * as npm from "@npm/types";
+import type { PackageJson, Maintainer, Dist, Repository, ObjectOfStrings } from "@npm/types";
 import * as httpie from "@myunisoft/httpie";
 
 // Import Internal Dependencies
 import { getLocalRegistryURL } from "../registry.js";
 import { getHttpAgent } from "../http.js";
+
+export type { PackageJson, Maintainer, Dist, Repository };
 
 export interface PackumentOptions {
   /** Npm API Token **/
@@ -17,11 +19,11 @@ export interface Packument {
   name: string;
   readme?: string;
   description?: string;
-  'dist-tags': { latest?: string } & npm.ObjectOfStrings;
+  'dist-tags': { latest?: string } & ObjectOfStrings;
   versions: {
     [key: string]: PackumentVersion
   };
-  maintainers: npm.Maintainer[];
+  maintainers: Maintainer[];
   time: {
     modified: string,
     created: string,
@@ -30,27 +32,27 @@ export interface Packument {
   users?: {
     [key: string]: boolean;
   }
-  contributors?: npm.Maintainer[];
+  contributors?: Maintainer[];
   homepage?: string;
   keywords?: string[];
-  repository?: npm.Repository;
-  author?: npm.Maintainer;
+  repository?: Repository;
+  author?: Maintainer;
   bugs?:  { url: string };
   license: string;
   // left out users (stars) deprecated, and attachments (does nothing)
   readmeFilename?: string;
 }
 
-export type PackumentVersion = npm.PackageJson & {
+export type PackumentVersion = PackageJson & {
   gitHead?: string;
-  maintainers: npm.Maintainer[];
-  dist: npm.Dist;
+  maintainers: Maintainer[];
+  dist: Dist;
   types?: string;
   deprecated?: string;
   _id: string;
   _npmVersion: string;
   _nodeVersion: string;
-  _npmUser: npm.Maintainer;
+  _npmUser: Maintainer;
   _hasShrinkwrap?: boolean;
   _engineSupported?: boolean;
   _defaultsLoaded?: boolean;

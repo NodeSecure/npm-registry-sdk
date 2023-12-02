@@ -20,7 +20,7 @@
     </a>
 </p>
 
-Node.js SDK to fetch data from the npm API.
+Node.js SDK to fetch data from the npm API (with up to date TypeScript types)
 
 ## Getting Started
 
@@ -35,8 +35,13 @@ $ yarn add @nodesecure/npm-registry-sdk
 ## Usage example
 
 ```ts
-import Registry from "@nodesecure/npm-registry-sdk";
+import * as Npm from "@nodesecure/npm-registry-sdk";
+
+const packument: Npm.Packument = await Npm.packument("express");
+console.log(packument);
 ```
+
+<kbd>packument</kbd> and <kbd>packumentVersion</kbd> take an optional payload options which can be used to provide an NPM token.
 
 ## API
 
@@ -72,15 +77,62 @@ interface NpmRegistryMetadata {
 }
 ```
 
-### packument(name: string, options?: PackumentOptions): Promise\<npm.Packument>
+### packument(name: string, options?: PackumentOptions): Promise\<Packument>
 
 ```ts
-interface PackumentOptions {
-  token: string;
+interface Packument {
+  _id: string;
+  _rev: string;
+  name: string;
+  readme?: string;
+  description?: string;
+  'dist-tags': { latest?: string } & ObjectOfStrings;
+  versions: {
+    [key: string]: PackumentVersion
+  };
+  maintainers: Maintainer[];
+  time: {
+    modified: string,
+    created: string,
+    [key: string]: string
+  };
+  users?: {
+    [key: string]: boolean;
+  }
+  contributors?: Maintainer[];
+  homepage?: string;
+  keywords?: string[];
+  repository?: Repository;
+  author?: Maintainer;
+  bugs?:  { url: string };
+  license: string;
+  // left out users (stars) deprecated, and attachments (does nothing)
+  readmeFilename?: string;
 }
 ```
 
-### packumentVersion(name: string, version: string, options?: packumentOptions): Promise\<npm.PackumentVersion>
+### packumentVersion(name: string, version: string, options?: PackumentOptions): Promise\<PackumentVersion>
+
+```ts
+type PackumentVersion = PackageJson & {
+  gitHead?: string;
+  maintainers: Maintainer[];
+  dist: Dist;
+  types?: string;
+  deprecated?: string;
+  _id: string;
+  _npmVersion: string;
+  _nodeVersion: string;
+  _npmUser: Maintainer;
+  _hasShrinkwrap?: boolean;
+  _engineSupported?: boolean;
+  _defaultsLoaded?: boolean;
+  _npmOperationalInternal?: {
+    host: string;
+    tmp: string;
+  }
+};
+```
 
 ### downloads(pkgName: string, period: Period = "last-week"): Promise< NpmPackageDownload >
 
