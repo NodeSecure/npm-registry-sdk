@@ -27,7 +27,7 @@ export interface NpmPackage {
   version: string;
 }
 
-export interface PaginationParams {
+export interface Pagination {
   perPage: number;
   page: number;
 }
@@ -42,7 +42,7 @@ export interface NpmUserProfile {
   };
   avatars: NpmAvatars
   packages: NpmPaginated<NpmPackage>;
-  pagination: PaginationParams;
+  pagination: Pagination;
 }
 
 interface NpmWebUser {
@@ -59,18 +59,18 @@ interface NpmWebUser {
     };
   }
   packages: NpmPaginated<NpmPackage>;
-  pagination: PaginationParams;
+  pagination: Pagination;
 }
 
-export async function user(
-  username: string,
-  { perPage, page }: Partial<PaginationParams> = { perPage: 25, page: 0 }
-): Promise<NpmUserProfile> {
+export async function user(username: string, { perPage, page }: Partial<Pagination> = {}): Promise<NpmUserProfile> {
   if (typeof username !== "string" || username.length === 0) {
     throw new TypeError("Argument `username` must be a non empty string");
   }
 
   const url = new URL(`~${username}?perPage=${perPage}&page=${page}`, utils.getNpmWeb());
+  url.searchParams.set("perPage", perPage?.toString() ?? "25");
+  url.searchParams.set("page", page?.toString() ?? "0");
+
   const { data } = await httpie.get<NpmWebUser>(url, { headers: { "x-spiferack": "1" } });
 
   const npmUserProfile = {

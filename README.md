@@ -43,6 +43,14 @@ console.log(packument);
 
 <kbd>packument</kbd> and <kbd>packumentVersion</kbd> take an optional payload options which can be used to provide an NPM token.
 
+```ts
+import * as Npm from "@nodesecure/npm-registry-sdk";
+
+const user: NpmUserProfile = await Npm.user("test-user");
+console.log(user);
+```
+
+<kbd>user</kbd> takes an optional payload pagination which can be used to set page number and page size to be used for paginated properties of the user like <kbd>pacakges</kbd>.
 ## API
 
 ### getNpmRegistryURL(): string
@@ -142,6 +150,47 @@ interface NpmPackageDownload {
   start: string;
   end: string;
   package: string;
+}
+```
+
+### user(username: string, pagination: Partial< Pagination > = {}): Promise< NpmUserProfile >
+
+```ts
+interface Pagination {
+  perPage: number;
+  page: number;
+}
+
+interface NpmPackage {
+  id: number;
+  name: string;
+  description: string;
+  maintainers: string[];
+  version: string;
+}
+
+interface NpmUserProfile {
+  id: number;
+  name: string;
+  fullname?: string;
+  accounts: {
+    twitter?: string;
+    github?: string;
+  };
+  avatars: {
+    small: string;
+    medium: string;
+    large: string;
+  };
+  packages: {
+    total: number;
+    objects: NpmPackage[];
+    urls: {
+      next: string;
+      prev: string;
+    }
+  };
+  pagination: Pagination;
 }
 ```
 
