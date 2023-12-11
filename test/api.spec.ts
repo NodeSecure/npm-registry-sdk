@@ -7,7 +7,8 @@ import {
   metadata,
   packument,
   packumentVersion,
-  downloads
+  downloads,
+  user
 } from "../src/index.js";
 import * as utils from "../src/utils.js";
 import { kHttpClientHeaders, setupHttpAgentMock } from "./httpie-mock.js";
@@ -129,3 +130,23 @@ describe("packumentVersion", () => {
   });
 });
 
+describe("user", () => {
+  it("should return user data", async() => {
+    const defaultUser = "test-user";
+    const { name, avatars, id, packages, pagination } = await user(defaultUser, { perPage: 30, page: 0 });
+
+    assert.equal(name, defaultUser);
+    assert.equal(id, 205872);
+    assert.equal(typeof avatars.small === "string" && avatars.small.length > 0, true);
+    assert.equal(pagination.page, 0);
+    assert.equal(pagination.perPage, 30);
+    assert.equal(packages.total > 0, true);
+  });
+
+  it("should throw if the user dosn't exist", async() => {
+    assert.rejects(
+      async() => await user("fake-user"),
+      { statusMessage: "Not Found" }
+    );
+  });
+});
