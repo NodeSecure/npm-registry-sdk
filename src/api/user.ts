@@ -62,14 +62,14 @@ interface NpmWebUser {
   pagination: Pagination;
 }
 
-export async function user(username: string, { perPage, page }: Partial<Pagination> = {}): Promise<NpmUserProfile> {
+export async function user(username: string, pagination: Partial<Pagination> = {}): Promise<NpmUserProfile> {
   if (typeof username !== "string" || username.length === 0) {
     throw new TypeError("Argument `username` must be a non empty string");
   }
-
-  const url = new URL(`~${username}?perPage=${perPage}&page=${page}`, utils.getNpmWeb());
-  url.searchParams.set("perPage", perPage?.toString() ?? "25");
-  url.searchParams.set("page", page?.toString() ?? "0");
+  const { perPage = 25, page = 0 } = pagination;
+  const url = new URL(`~${username}`, utils.getNpmWeb());
+  url.searchParams.set("perPage", perPage.toString());
+  url.searchParams.set("page", page.toString());
 
   const { data } = await httpie.get<NpmWebUser>(url, { headers: { "x-spiferack": "1" } });
 
