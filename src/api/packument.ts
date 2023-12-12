@@ -19,7 +19,7 @@ export interface Packument {
   name: string;
   readme?: string;
   description?: string;
-  'dist-tags': { latest?: string } & ObjectOfStrings;
+  "dist-tags": { latest?: string } & ObjectOfStrings;
   versions: {
     [key: string]: PackumentVersion
   };
@@ -37,7 +37,7 @@ export interface Packument {
   keywords?: string[];
   repository?: Repository;
   author?: Maintainer;
-  bugs?:  { url: string };
+  bugs?: { url: string };
   license: string;
   // left out users (stars) deprecated, and attachments (does nothing)
   readmeFilename?: string;

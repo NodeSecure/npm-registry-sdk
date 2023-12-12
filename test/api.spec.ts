@@ -7,7 +7,8 @@ import {
   metadata,
   packument,
   packumentVersion,
-  downloads
+  downloads,
+  user
 } from "../src/index.js";
 import * as utils from "../src/utils.js";
 import { kHttpClientHeaders, setupHttpAgentMock } from "./httpie-mock.js";
@@ -28,7 +29,7 @@ describe("downloads", () => {
   it("should throw error if pkg is not defined", async() => {
     const undefinedPkg = undefined;
 
-    assert.rejects(
+    await assert.rejects(
       async() => await downloads(undefinedPkg as any),
       { name: "TypeError", message: "Argument `pkgName` must be a non empty string" }
     );
@@ -37,7 +38,7 @@ describe("downloads", () => {
   it("should throw error if pkg is not a string", async() => {
     const wrongTypedPkg = 32;
 
-    assert.rejects(
+    await assert.rejects(
       async() => await downloads(wrongTypedPkg as any),
       { name: "TypeError", message: "Argument `pkgName` must be a non empty string" }
     );
@@ -46,7 +47,7 @@ describe("downloads", () => {
   it("should throw error if pkg is an empty string", async() => {
     const emptyStringPkg = "";
 
-    assert.rejects(
+    await assert.rejects(
       async() => await downloads(emptyStringPkg),
       { name: "TypeError", message: "Argument `pkgName` must be a non empty string" }
     );
@@ -98,7 +99,7 @@ describe("packument", () => {
   });
 
   it("should throw if the package dosn't exist", async() => {
-    assert.rejects(
+    await assert.rejects(
       async() => await packument(kFakePackageName),
       { statusMessage: "Not Found" }
     );
@@ -113,7 +114,7 @@ describe("packumentVersion", () => {
   });
 
   it("should throw if the package dosn't exist", async() => {
-    assert.rejects(
+    await assert.rejects(
       async() => await packumentVersion(kFakePackageName, kDefaultPackageVersion),
       { statusMessage: "Not Found" }
     );
@@ -122,10 +123,30 @@ describe("packumentVersion", () => {
   it("should throw if provided package version dosn't exist", async() => {
     const fakePackageVersion = "0.0.0";
 
-    assert.rejects(
+    await assert.rejects(
       async() => await packumentVersion(kDefaultPackageName, fakePackageVersion),
       { data: `version not found: ${fakePackageVersion}` }
     );
   });
 });
 
+describe("user", () => {
+  it("should return user data", async() => {
+    const defaultUser = "test-user";
+    const { name, avatars, id, packages, pagination } = await user(defaultUser, { perPage: 30, page: 0 });
+
+    assert.equal(name, defaultUser);
+    assert.equal(id, 205872);
+    assert.equal(typeof avatars.small === "string" && avatars.small.length > 0, true);
+    assert.equal(pagination.page, 0);
+    assert.equal(pagination.perPage, 30);
+    assert.equal(packages.total > 0, true);
+  });
+
+  it("should throw if the user dosn't exist", async() => {
+    await assert.rejects(
+      async() => await user("fake-user"),
+      { statusMessage: "Not Found" }
+    );
+  });
+});

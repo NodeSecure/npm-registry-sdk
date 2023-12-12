@@ -15,3 +15,7 @@ export function clamp(property: number, min = 0, max = 1): number {
 export function getNpmApi() {
   return new URL("https://api.npmjs.org");
 }
+
+export function getNpmWeb() {
+  return new URL("https://www.npmjs.com");
+}
