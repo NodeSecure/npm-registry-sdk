@@ -49,6 +49,7 @@ export type PackumentVersion = PackageJson & {
   dist: Dist;
   types?: string;
   deprecated?: string;
+  homepage?: string;
   _id: string;
   _npmVersion: string;
   _nodeVersion: string;
