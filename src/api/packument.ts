@@ -1,12 +1,58 @@
 // Import Third-party Dependencies
-import type { PackageJson, Maintainer, Dist, Repository, ObjectOfStrings } from "@npm/types";
+import type { PackageJson, Maintainer, Repository, ObjectOfStrings } from "@npm/types";
 import * as httpie from "@myunisoft/httpie";
 
 // Import Internal Dependencies
 import { getLocalRegistryURL } from "../registry.js";
 import { getHttpAgent } from "../http.js";
 
-export type { PackageJson, Maintainer, Dist, Repository };
+export type { PackageJson, Maintainer, Repository };
+
+export interface DistSignature {
+  keyid: string;
+  sig: string;
+}
+
+export interface Dist {
+  /**
+   * the url to the tarball for the package version
+   */
+  tarball: string;
+  /**
+   * the sha1 sum of the tarball
+   */
+  shasum: string;
+  /**
+   * subresource integrity string! `npm view ssri`
+   * https://w3c.github.io/webappsec-subresource-integrity/
+   */
+  integrity?: string;
+  /**
+   * the number of files in the tarball. this is on most packages published >= 2018
+   */
+  fileCount?: number;
+  /**
+   * the unpacked size of the files in the tarball. >= 2018
+   */
+  unpackedSize?: number;
+  /**
+   * pgp signed package signature
+   * https://blog.npmjs.org/post/172999548390/new-pgp-machinery
+   */
+  "npm-signature"?: string;
+  /**
+   * NPM Provenance
+   *
+   * @see https://docs.npmjs.com/generating-provenance-statements
+   */
+  attestations?: {
+    url: string;
+    provenance: {
+      predicateType: string;
+    }
+  };
+  signatures?: DistSignature[];
+}
 
 export interface PackumentOptions {
   /** Npm API Token **/
