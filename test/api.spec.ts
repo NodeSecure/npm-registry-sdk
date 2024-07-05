@@ -83,7 +83,10 @@ describe("downloads", () => {
   });
 });
 
-describe("metadata", () => {
+/**
+ * NOTE: https://registry.npmjs.org return empty Object since 04/2024!
+ */
+describe.skip("metadata", () => {
   it("should return metadata for the npm registry", async() => {
     const { db_name: dbName } = await metadata();
 

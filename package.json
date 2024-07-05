@@ -29,7 +29,7 @@
   "homepage": "https://github.com/NodeSecure/npm-registry-sdk#readme",
   "dependencies": {
     "@myunisoft/httpie": "^4.0.1",
-    "@npm/types": "^1.0.2"
+    "@nodesecure/npm-types": "^1.0.0"
   },
   "devDependencies": {
     "@nodesecure/eslint-config": "^1.8.0",
