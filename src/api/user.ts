@@ -10,7 +10,7 @@ interface NpmPaginated<T> {
   urls: {
     next: string;
     prev: string;
-  }
+  };
 }
 
 interface NpmAvatars {
@@ -40,7 +40,7 @@ export interface NpmUserProfile {
     twitter?: string;
     github?: string;
   };
-  avatars: NpmAvatars
+  avatars: NpmAvatars;
   packages: NpmPaginated<NpmPackage>;
   pagination: Pagination;
 }
@@ -50,14 +50,14 @@ interface NpmWebUser {
     id: number;
     parent: {
       name: string;
-      avatars: NpmAvatars
+      avatars: NpmAvatars;
       resource: {
         github?: string;
         twitter?: string;
         fullname?: string;
-      }
+      };
     };
-  }
+  };
   packages: NpmPaginated<NpmPackage>;
   pagination: Pagination;
 }

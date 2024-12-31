@@ -1,16 +1,9 @@
 {
-    "compilerOptions": {
-      "declaration": true,
-      "strictNullChecks": true,
-      "target": "ESNext",
-      "outDir": "dist",
-      "module": "ESNext",
-      "moduleResolution": "node",
-      "esModuleInterop": true,
-      "sourceMap": true,
-      "rootDir": "src",
-      "types": ["node"]
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist"]
-  }
+  "extends": "@openally/config.typescript",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "./",
+  },
+  "include": ["src", "index.ts"],
+  "exclude": ["node_modules", "dist"]
+}
