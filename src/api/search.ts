@@ -33,25 +33,25 @@ export interface SearchResult {
       scope: string;
       version: string;
       description: string;
-      keywords?: string[]
+      keywords?: string[];
       date: string;
       links: {
         npm: string;
         homepage?: string;
         bugs?: string;
         repository?: string;
-      }
-      author: SearchMaintainer & { name?: string };
+      };
+      author: SearchMaintainer & { name?: string; };
       publisher: SearchMaintainer;
       maintainers: SearchMaintainer[];
-    },
+    };
     score: {
       final: number;
       detail: {
         quality: number;
         popularity: number;
         maintenance: number;
-      }
+      };
     };
     searchScore: number;
   }[];
