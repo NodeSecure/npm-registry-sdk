@@ -7,7 +7,9 @@ export const kHttpClientHeaders = {
   headers: { "content-type": "application/json" }
 };
 
-export function setupHttpAgentMock(url: string): [Interceptable, () => void] {
+export function setupHttpAgentMock(
+  url: string
+): [Interceptable, () => void] {
   const httpDispatcher = httpie.getGlobalDispatcher();
   const mockedHttpAgent = new httpie.MockAgent();
 
