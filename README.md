@@ -194,6 +194,19 @@ interface NpmUserProfile {
 }
 ```
 
+### keys(): Promise< RegistryKey[] >
+
+```ts
+export interface RegistryKey {
+  keyid: string;
+  keytype: string; 
+  scheme: string;
+  key: string;
+  pemkey: string;
+  expires: string | null;
+}
+```
+
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
