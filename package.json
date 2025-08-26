@@ -29,8 +29,8 @@
   },
   "homepage": "https://github.com/NodeSecure/npm-registry-sdk#readme",
   "dependencies": {
-    "@myunisoft/httpie": "^5.0.1",
-    "@nodesecure/npm-types": "^1.1.1"
+    "@nodesecure/npm-types": "^1.1.1",
+    "@openally/httpie": "^1.0.0"
   },
   "devDependencies": {
     "@openally/config.eslint": "^2.0.0",

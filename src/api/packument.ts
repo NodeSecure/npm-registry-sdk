@@ -1,6 +1,6 @@
 // Import Third-party Dependencies
 import type { Packument, PackumentVersion } from "@nodesecure/npm-types";
-import * as httpie from "@myunisoft/httpie";
+import * as httpie from "@openally/httpie";
 
 // Import Internal Dependencies
 import { getLocalRegistryURL } from "../registry.js";

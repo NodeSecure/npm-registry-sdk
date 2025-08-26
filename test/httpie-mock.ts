@@ -1,5 +1,5 @@
 // Import Third-party Dependencies
-import * as httpie from "@myunisoft/httpie";
+import * as httpie from "@openally/httpie";
 import { Interceptable } from "undici";
 
 // CONSTANTS

@@ -1,5 +1,5 @@
 // Import Third-party Dependencies
-import { Agent, MockAgent } from "@myunisoft/httpie";
+import { Agent, MockAgent } from "@openally/httpie";
 
 // CONSTANTS
 const kDefaultMaxRegistryConnections = 15;
