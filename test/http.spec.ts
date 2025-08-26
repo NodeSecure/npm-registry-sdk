@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert";
 
 // Import Third-party Dependencies
-import { Agent } from "@myunisoft/httpie";
+import { Agent } from "@openally/httpie";
 
 // Import Internal Dependencies
 import * as HttpAgent from "../src/http";
