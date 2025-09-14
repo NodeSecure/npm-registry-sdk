@@ -9,7 +9,7 @@ export const kHttpClientHeaders = {
 
 export function setupHttpAgentMock(
   url: string
-): [Interceptable, () => void] {
+): [Interceptable, () => void, httpie.MockAgent] {
   const httpDispatcher = httpie.getGlobalDispatcher();
   const mockedHttpAgent = new httpie.MockAgent();
 
@@ -23,6 +23,7 @@ export function setupHttpAgentMock(
     () => {
       mockedHttpAgent.enableNetConnect();
       httpie.setGlobalDispatcher(httpDispatcher);
-    }
+    },
+    mockedHttpAgent
   ];
 }
