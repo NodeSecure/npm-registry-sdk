@@ -207,6 +207,24 @@ export interface RegistryKey {
 }
 ```
 
+### packageDistTags(pkgName: string, options?: DistTagsOptions): Promise<DistTags>
+
+```ts
+export interface DistTags {
+  latest: string;
+  next?: string;
+  canary?: string;
+  rc?: string;
+  beta?: string;
+  alpha?: string;
+  experimental?: string;
+}
+
+interface DistTagsOptions {
+  token?: string;
+}
+```
+
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
