@@ -1,19 +1,10 @@
 // Import Third-party Dependencies
 import * as httpie from "@openally/httpie";
+import type { DistTags } from "@nodesecure/npm-types";
 
 // Import Internal Dependencies
 import { getLocalRegistryURL } from "../registry.js";
 import { getHttpAgent } from "../http.js";
-
-export interface DistTags {
-  latest: string;
-  next?: string;
-  canary?: string;
-  rc?: string;
-  beta?: string;
-  alpha?: string;
-  experimental?: string;
-}
 
 interface DistTagsOptions {
   token?: string;
@@ -36,3 +27,7 @@ export async function packageDistTags(
 
   return data;
 }
+
+export type {
+  DistTags
+};
