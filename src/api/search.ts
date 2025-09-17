@@ -4,6 +4,7 @@ import * as httpie from "@openally/httpie";
 // Import Internal Dependencies
 import { getLocalRegistryURL } from "../registry.js";
 import { getHttpAgent } from "../http.js";
+import type { DefaultRegistryApiOptions } from "./common/types.js";
 import * as utils from "../utils.js";
 
 export interface SearchCriteria {
@@ -59,12 +60,10 @@ export interface SearchResult {
   time: string;
 }
 
-export interface SearchOptions {
-  /** Npm API Token **/
-  token: string;
-}
-
-export async function search(criteria: SearchCriteria, options?: SearchOptions) {
+export async function search(
+  criteria: SearchCriteria,
+  options?: DefaultRegistryApiOptions
+) {
   const { text, size, from, quality, popularity, maintenance } = criteria;
   const query = new URL("/-/v1/search", getLocalRegistryURL());
 
