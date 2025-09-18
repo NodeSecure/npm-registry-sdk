@@ -5,14 +5,11 @@ import * as httpie from "@openally/httpie";
 // Import Internal Dependencies
 import { getLocalRegistryURL } from "../registry.js";
 import { getHttpAgent } from "../http.js";
+import type { DefaultRegistryApiOptions } from "./common/types.js";
 
-export interface PackumentOptions {
-  /** Npm API Token **/
-  token: string;
-}
 export async function packument(
   name: string,
-  options?: PackumentOptions
+  options?: DefaultRegistryApiOptions
 ): Promise<Packument> {
   const path = new URL(name, getLocalRegistryURL());
 
@@ -27,7 +24,7 @@ export async function packument(
 export async function packumentVersion(
   name: string,
   version: string,
-  options?: PackumentOptions
+  options?: DefaultRegistryApiOptions
 ): Promise<PackumentVersion> {
   const path = new URL(`${name}/${version}`, getLocalRegistryURL());
 

@@ -5,14 +5,11 @@ import type { DistTags } from "@nodesecure/npm-types";
 // Import Internal Dependencies
 import { getLocalRegistryURL } from "../registry.js";
 import { getHttpAgent } from "../http.js";
-
-interface DistTagsOptions {
-  token?: string;
-}
+import type { DefaultRegistryApiOptions } from "./common/types.js";
 
 export async function packageDistTags(
   pkgName: string,
-  options?: DistTagsOptions
+  options?: DefaultRegistryApiOptions
 ): Promise<DistTags> {
   if (typeof pkgName !== "string" || pkgName.length === 0) {
     throw new TypeError("Argument `pkgName` must be a non empty string");

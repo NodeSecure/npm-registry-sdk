@@ -62,7 +62,10 @@ interface NpmWebUser {
   pagination: Pagination;
 }
 
-export async function user(username: string, pagination: Partial<Pagination> = {}): Promise<NpmUserProfile> {
+export async function user(
+  username: string,
+  pagination: Partial<Pagination> = {}
+): Promise<NpmUserProfile> {
   if (typeof username !== "string" || username.length === 0) {
     throw new TypeError("Argument `username` must be a non empty string");
   }
