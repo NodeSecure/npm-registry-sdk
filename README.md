@@ -85,7 +85,7 @@ interface NpmRegistryMetadata {
 }
 ```
 
-### packument(name: string, options?: PackumentOptions): Promise\<Packument>
+### packument(name: string, options?: DefaultRegistryApiOptions): Promise\<Packument>
 
 ```ts
 interface Packument {
@@ -119,7 +119,7 @@ interface Packument {
 }
 ```
 
-### packumentVersion(name: string, version: string, options?: PackumentOptions): Promise\<PackumentVersion>
+### packumentVersion(name: string, version: string, options?: DefaultRegistryApiOptions): Promise\<PackumentVersion>
 
 ```ts
 type PackumentVersion = PackageJson & {
@@ -207,7 +207,7 @@ export interface RegistryKey {
 }
 ```
 
-### packageDistTags(pkgName: string, options?: DistTagsOptions): Promise<DistTags>
+### packageDistTags(pkgName: string, options?: DefaultRegistryApiOptions): Promise<DistTags>
 
 ```ts
 export interface DistTags {
@@ -220,10 +220,9 @@ export interface DistTags {
   experimental?: string;
 }
 
-interface DistTagsOptions {
-  token?: string;
-}
 ```
+
+### tarballDownload(name: string,version, options?: DefaultRegistryApiOptions): NodeJS.ReadableStream
 
 ## Contributors ✨
 
