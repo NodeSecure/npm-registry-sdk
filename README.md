@@ -224,6 +224,14 @@ export interface DistTags {
 
 ### tarballDownload(name: string,version, options?: DefaultRegistryApiOptions): NodeJS.ReadableStream
 
+### org(namespace: string): Promise<NpmPackageOrg>
+
+```ts
+export type PermissionLevel = "read" | "write" | "admin" | "maintain";
+
+export type NpmPackageOrg = Record<string, PermissionLevel>;
+```
+
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
