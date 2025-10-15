@@ -5,18 +5,11 @@ import assert from "node:assert";
 // Import Internal Dependencies
 import {
   metadata,
-  packument,
-  packumentVersion,
   downloads,
   user
 } from "../src/index.js";
 import * as utils from "../src/utils.js";
 import { kHttpClientHeaders, setupHttpAgentMock } from "./httpie-mock.js";
-
-// CONSTANTS
-const kDefaultPackageVersion = "1.0.0";
-const kDefaultPackageName = "@nodesecure/npm-registry-sdk";
-const kFakePackageName = (Math.random() * 10).toString();
 
 describe("downloads", () => {
   const apiUrl = utils.getNpmApi().href.slice(0, -1);
@@ -91,45 +84,6 @@ describe.skip("metadata", () => {
     const { db_name: dbName } = await metadata();
 
     assert.equal(dbName, "registry");
-  });
-});
-
-describe("packument", () => {
-  it("should return packument data about the provided registry", async() => {
-    const { name } = await packument(kDefaultPackageName);
-
-    assert.equal(name, kDefaultPackageName);
-  });
-
-  it("should throw if the package dosn't exist", async() => {
-    await assert.rejects(
-      async() => await packument(kFakePackageName),
-      { statusMessage: "Not Found" }
-    );
-  });
-});
-
-describe("packumentVersion", () => {
-  it("should return packument data for provided version", async() => {
-    const { version } = await packumentVersion(kDefaultPackageName, kDefaultPackageVersion);
-
-    assert.equal(version, kDefaultPackageVersion);
-  });
-
-  it("should throw if the package dosn't exist", async() => {
-    await assert.rejects(
-      async() => await packumentVersion(kFakePackageName, kDefaultPackageVersion),
-      { statusMessage: "Not Found" }
-    );
-  });
-
-  it("should throw if provided package version dosn't exist", async() => {
-    const fakePackageVersion = "0.0.0";
-
-    await assert.rejects(
-      async() => await packumentVersion(kDefaultPackageName, fakePackageVersion),
-      { data: `version not found: ${fakePackageVersion}` }
-    );
   });
 });
 

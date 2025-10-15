@@ -85,7 +85,7 @@ interface NpmRegistryMetadata {
 }
 ```
 
-### packument(name: string, options?: DefaultRegistryApiOptions): Promise\<Packument>
+### packument(name: string, options?: PackumentRegistryApiOptions): Promise\<Packument>
 
 ```ts
 interface Packument {
@@ -119,7 +119,7 @@ interface Packument {
 }
 ```
 
-### packumentVersion(name: string, version: string, options?: DefaultRegistryApiOptions): Promise\<PackumentVersion>
+### packumentVersion(name: string, version: string, options?: PackumentRegistryApiOptions): Promise\<PackumentVersion>
 
 ```ts
 type PackumentVersion = PackageJson & {

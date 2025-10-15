@@ -7,11 +7,13 @@ import { getLocalRegistryURL } from "../registry.js";
 import { getHttpAgent } from "../http.js";
 import type { DefaultRegistryApiOptions } from "./common/types.js";
 
+export type PackumentRegistryApiOptions = DefaultRegistryApiOptions & { registry?: string; };
+
 export async function packument(
   name: string,
-  options?: DefaultRegistryApiOptions
+  options?: PackumentRegistryApiOptions
 ): Promise<Packument> {
-  const path = new URL(name, getLocalRegistryURL());
+  const path = new URL(name, options?.registry ?? getLocalRegistryURL());
 
   const { data } = await httpie.get<Packument>(path, {
     authorization: options?.token,
@@ -24,9 +26,9 @@ export async function packument(
 export async function packumentVersion(
   name: string,
   version: string,
-  options?: DefaultRegistryApiOptions
+  options?: PackumentRegistryApiOptions
 ): Promise<PackumentVersion> {
-  const path = new URL(`${name}/${version}`, getLocalRegistryURL());
+  const path = new URL(`${name}/${version}`, options?.registry ?? getLocalRegistryURL());
 
   const { data } = await httpie.get<PackumentVersion>(path, {
     authorization: options?.token,
