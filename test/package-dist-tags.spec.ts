@@ -8,9 +8,9 @@ import {
   getLocalRegistryURL,
   setHttpAgent,
   restoreHttpAgent
-} from "../src/index.js";
+} from "../src/index.ts";
 
-import { kHttpClientHeaders, setupHttpAgentMock } from "./httpie-mock.js";
+import { HTTP_CLIENT_HEADERS, setupHttpAgentMock } from "./httpie-mock.ts";
 
 describe("package-dist-tags", () => {
   const [dispatcher, close, agent] = setupHttpAgentMock(new URL(getLocalRegistryURL()).origin);
@@ -68,7 +68,7 @@ describe("package-dist-tags", () => {
         method: "GET",
         headers: { "user-agent": "httpie", Authorization: "Bearer npm token" }
       })
-      .reply(200, payload, kHttpClientHeaders);
+      .reply(200, payload, HTTP_CLIENT_HEADERS);
 
     const response = await packageDistTags(pkg, { token: "npm token" });
 

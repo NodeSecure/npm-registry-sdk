@@ -2,7 +2,7 @@
 import * as httpie from "@openally/httpie";
 
 // Import Internal Dependencies
-import * as utils from "../utils.js";
+import * as utils from "../utils.ts";
 
 interface NpmPaginated<T> {
   total: number;

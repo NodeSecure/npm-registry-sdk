@@ -5,9 +5,9 @@ import { PassThrough } from "node:stream";
 import * as httpie from "@openally/httpie";
 
 // Import Internal Dependencies
-import { getLocalRegistryURL } from "../registry.js";
-import { getHttpAgent } from "../http.js";
-import type { DefaultRegistryApiOptions } from "./common/types.js";
+import { getLocalRegistryURL } from "../registry.ts";
+import { getHttpAgent } from "../http.ts";
+import type { DefaultRegistryApiOptions } from "./common/types.ts";
 
 export function tarballDownload(name: string, version: string, options?: DefaultRegistryApiOptions): NodeJS.ReadableStream {
   const url = new URL(`/${name}/-/${name}-${version}.tgz`, getLocalRegistryURL());

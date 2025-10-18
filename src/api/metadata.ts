@@ -2,8 +2,8 @@
 import * as httpie from "@openally/httpie";
 
 // Import Internal Dependencies
-import { getLocalRegistryURL } from "../registry.js";
-import { getHttpAgent } from "../http.js";
+import { getLocalRegistryURL } from "../registry.ts";
+import { getHttpAgent } from "../http.ts";
 
 export interface NpmRegistryMetadata {
   db_name: string;

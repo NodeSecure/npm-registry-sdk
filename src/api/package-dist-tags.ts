@@ -3,9 +3,9 @@ import * as httpie from "@openally/httpie";
 import type { DistTags } from "@nodesecure/npm-types";
 
 // Import Internal Dependencies
-import { getLocalRegistryURL } from "../registry.js";
-import { getHttpAgent } from "../http.js";
-import type { DefaultRegistryApiOptions } from "./common/types.js";
+import { getLocalRegistryURL } from "../registry.ts";
+import { getHttpAgent } from "../http.ts";
+import type { DefaultRegistryApiOptions } from "./common/types.ts";
 
 export async function packageDistTags(
   pkgName: string,

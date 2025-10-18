@@ -2,7 +2,7 @@
 import * as httpie from "@openally/httpie";
 
 // Import Internal Dependencies
-import { getNpmRegistryURL } from "../registry.js";
+import { getNpmRegistryURL } from "../registry.ts";
 
 export interface RegistryKey {
   keyid: string;

@@ -3,9 +3,9 @@ import type { Packument, PackumentVersion } from "@nodesecure/npm-types";
 import * as httpie from "@openally/httpie";
 
 // Import Internal Dependencies
-import { getLocalRegistryURL } from "../registry.js";
-import { getHttpAgent } from "../http.js";
-import type { DefaultRegistryApiOptions } from "./common/types.js";
+import { getLocalRegistryURL } from "../registry.ts";
+import { getHttpAgent } from "../http.ts";
+import type { DefaultRegistryApiOptions } from "./common/types.ts";
 
 export type PackumentRegistryApiOptions = DefaultRegistryApiOptions & { registry?: string; };
 
