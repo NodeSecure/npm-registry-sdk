@@ -1,15 +1,14 @@
 // Import Third-party Dependencies
 import * as httpie from "@openally/httpie";
-import { Interceptable } from "undici";
 
 // CONSTANTS
-export const kHttpClientHeaders = {
+export const HTTP_CLIENT_HEADERS = {
   headers: { "content-type": "application/json" }
 };
 
 export function setupHttpAgentMock(
   url: string
-): [Interceptable, () => void, httpie.MockAgent] {
+): [httpie.Interceptable, () => void, httpie.MockAgent] {
   const httpDispatcher = httpie.getGlobalDispatcher();
   const mockedHttpAgent = new httpie.MockAgent();
 

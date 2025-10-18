@@ -5,9 +5,9 @@ import assert from "node:assert";
 // Import Internal Dependencies
 import {
   org
-} from "../src/index.js";
-import { getNpmRegistryURL } from "../src/registry.js";
-import { kHttpClientHeaders, setupHttpAgentMock } from "./httpie-mock.js";
+} from "../src/index.ts";
+import { getNpmRegistryURL } from "../src/registry.ts";
+import { HTTP_CLIENT_HEADERS, setupHttpAgentMock } from "./httpie-mock.ts";
 
 describe("org", () => {
   const apiUrl = getNpmRegistryURL().slice(0, -1);
@@ -64,7 +64,7 @@ describe("org", () => {
       .intercept({
         path: `-/org/${namepace}/package`
       })
-      .reply(200, payload, kHttpClientHeaders);
+      .reply(200, payload, HTTP_CLIENT_HEADERS);
 
     const response = await org(namepace);
 

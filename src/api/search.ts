@@ -2,10 +2,10 @@
 import * as httpie from "@openally/httpie";
 
 // Import Internal Dependencies
-import { getLocalRegistryURL } from "../registry.js";
-import { getHttpAgent } from "../http.js";
-import type { DefaultRegistryApiOptions } from "./common/types.js";
-import * as utils from "../utils.js";
+import { getLocalRegistryURL } from "../registry.ts";
+import { getHttpAgent } from "../http.ts";
+import type { DefaultRegistryApiOptions } from "./common/types.ts";
+import * as utils from "../utils.ts";
 
 export interface SearchCriteria {
   /**	full-text search to apply **/

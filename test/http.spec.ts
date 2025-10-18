@@ -6,10 +6,10 @@ import assert from "node:assert";
 import { Agent } from "@openally/httpie";
 
 // Import Internal Dependencies
-import * as HttpAgent from "../src/http";
+import * as HttpAgent from "../src/http.ts";
 
 // CONSTANTS
-const testAgent = new Agent({
+const kTestAgent = new Agent({
   connections: 1
 });
 
@@ -25,7 +25,7 @@ describe("Http Agent", () => {
   });
 
   it("should update agent", () => {
-    HttpAgent.setHttpAgent(testAgent);
+    HttpAgent.setHttpAgent(kTestAgent);
     const agent = HttpAgent.getHttpAgent();
 
     const symbols = Object.getOwnPropertySymbols(agent);
@@ -36,7 +36,7 @@ describe("Http Agent", () => {
   });
 
   it("should restore agent to default one", () => {
-    HttpAgent.setHttpAgent(testAgent);
+    HttpAgent.setHttpAgent(kTestAgent);
     const agent = HttpAgent.getHttpAgent();
 
     const symbols = Object.getOwnPropertySymbols(agent);

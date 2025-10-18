@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert";
 
 // Import Internal Dependencies
-import * as utils from "../src/utils";
+import * as utils from "../src/utils.ts";
 
 describe("utils.clamp()", () => {
   it("should throw if property is not a number", () => {

@@ -8,8 +8,8 @@ import {
   packumentVersion,
   setHttpAgent,
   restoreHttpAgent
-} from "../src/index.js";
-import { kHttpClientHeaders, setupHttpAgentMock } from "./httpie-mock.js";
+} from "../src/index.ts";
+import { HTTP_CLIENT_HEADERS, setupHttpAgentMock } from "./httpie-mock.ts";
 
 // CONSTANTS
 const kDefaultPackageVersion = "1.0.0";
@@ -41,7 +41,7 @@ describe("packument", () => {
         method: "GET",
         headers: { "user-agent": "httpie", Authorization: "Bearer npmToken" }
       })
-      .reply(200, { name: kDefaultPackageName }, kHttpClientHeaders);
+      .reply(200, { name: kDefaultPackageName }, HTTP_CLIENT_HEADERS);
 
     const { name } = await packument(kDefaultPackageName, {
       registry,
@@ -89,7 +89,7 @@ describe("packumentVersion", () => {
         method: "GET",
         headers: { "user-agent": "httpie", Authorization: "Bearer npmToken" }
       })
-      .reply(200, { version: kDefaultPackageVersion }, kHttpClientHeaders);
+      .reply(200, { version: kDefaultPackageVersion }, HTTP_CLIENT_HEADERS);
 
     const { version } = await packumentVersion(kDefaultPackageName, kDefaultPackageVersion, {
       registry,

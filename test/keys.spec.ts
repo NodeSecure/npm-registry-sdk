@@ -3,12 +3,12 @@ import { describe, test, after } from "node:test";
 import assert from "node:assert/strict";
 
 // Import Internal Dependencies
-import { keys } from "../src/index.js";
-import { getNpmRegistryURL } from "../src/registry.js";
+import { keys } from "../src/index.ts";
+import { getNpmRegistryURL } from "../src/registry.ts";
 import {
-  kHttpClientHeaders,
+  HTTP_CLIENT_HEADERS,
   setupHttpAgentMock
-} from "./httpie-mock.js";
+} from "./httpie-mock.ts";
 
 // CONSTANTS
 const kMockRegistryKeysResponse = {
@@ -44,7 +44,7 @@ describe("keys", () => {
         path: "/-/npm/v1/keys",
         method: "GET"
       })
-      .reply(200, kMockRegistryKeysResponse, kHttpClientHeaders);
+      .reply(200, kMockRegistryKeysResponse, HTTP_CLIENT_HEADERS);
 
     const data = await keys();
 

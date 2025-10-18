@@ -9,8 +9,8 @@ import {
   getLocalRegistryURL,
   setHttpAgent,
   restoreHttpAgent
-} from "../src/index.js";
-import { kHttpClientHeaders, setupHttpAgentMock } from "./httpie-mock.js";
+} from "../src/index.ts";
+import { HTTP_CLIENT_HEADERS, setupHttpAgentMock } from "./httpie-mock.ts";
 
 describe("download tarball", () => {
   const [dispatcher, close, agent] = setupHttpAgentMock(new URL(getLocalRegistryURL()).origin);
@@ -35,7 +35,7 @@ describe("download tarball", () => {
         method: "GET",
         headers: { "user-agent": "httpie", Authorization: "Bearer npmToken" }
       })
-      .reply(200, fakeTarball, kHttpClientHeaders);
+      .reply(200, fakeTarball, HTTP_CLIENT_HEADERS);
 
     const duplex = tarballDownload(name, version, { token });
 

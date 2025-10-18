@@ -7,9 +7,9 @@ import {
   metadata,
   downloads,
   user
-} from "../src/index.js";
-import * as utils from "../src/utils.js";
-import { kHttpClientHeaders, setupHttpAgentMock } from "./httpie-mock.js";
+} from "../src/index.ts";
+import * as utils from "../src/utils.ts";
+import { HTTP_CLIENT_HEADERS, setupHttpAgentMock } from "./httpie-mock.ts";
 
 describe("downloads", () => {
   const apiUrl = utils.getNpmApi().href.slice(0, -1);
@@ -54,7 +54,7 @@ describe("downloads", () => {
       .intercept({
         path: `/downloads/point/last-week/${pkg}`
       })
-      .reply(200, payload, kHttpClientHeaders);
+      .reply(200, payload, HTTP_CLIENT_HEADERS);
 
     const response = await downloads(pkg);
 
@@ -68,7 +68,7 @@ describe("downloads", () => {
 
     dispatcher
       .intercept({ path: `/downloads/point/${period}/${pkg}` })
-      .reply(200, payload, kHttpClientHeaders);
+      .reply(200, payload, HTTP_CLIENT_HEADERS);
 
     const response = await downloads(pkg, period);
 
