@@ -8,7 +8,7 @@ import {
   getLocalRegistryURL,
   setLocalRegistryURL,
   loadRegistryURLFromLocalSystem
-} from "../src/registry";
+} from "../src/registry.ts";
 
 // CONSTANTS
 const kDefaultNpmRegistry = "https://registry.npmjs.org/";
