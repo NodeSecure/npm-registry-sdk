@@ -2,6 +2,12 @@
 
 The `metadata` api retrieves metadata information about the npm registry database, including statistics about documents, disk usage, and database status.
 
+## Syntax
+
+```typescript
+metadata(): Promise<NpmRegistryMetadata>
+```
+
 ## Types
 
 ### NpmRegistryMetadata
@@ -20,33 +26,4 @@ interface NpmRegistryMetadata {
   disk_format_version: number; // Version of the disk format being used
   committed_update_seq: number; // Last committed update sequence number
 }
-```
-
-## Syntax
-
-```typescript
-metadata(): Promise<NpmRegistryMetadata>
-```
-
-## Parameters
-
-This function takes no parameters.
-
-## Returns
-
-Returns a `Promise<NpmRegistryMetadata>` containing comprehensive metadata about the npm registry database, including document counts, disk usage statistics, and operational status.
-
-## Examples
-
-### Get registry metadata
-
-```typescript
-import { metadata } from "npm-registry-sdk";
-
-const registryInfo = await metadata();
-console.log(`Database: ${registryInfo.db_name}`);
-console.log(`Total packages: ${registryInfo.doc_count}`);
-console.log(`Deleted packages: ${registryInfo.doc_del_count}`);
-console.log(`Disk size: ${(registryInfo.disk_size / 1024 / 1024 / 1024).toFixed(2)} GB`);
-console.log(`Data size: ${(registryInfo.data_size / 1024 / 1024 / 1024).toFixed(2)} GB`);
 ```
