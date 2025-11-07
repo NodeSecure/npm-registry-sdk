@@ -2,6 +2,12 @@
 
 The `search` api allows you to search for npm packages using various criteria including text search, popularity, quality, and maintenance scores.
 
+## Syntax
+
+```typescript
+search(criteria: SearchCriteria, options?: DefaultRegistryApiOptions): Promise<SearchResult>
+```
+
 ## Types
 
 ### SearchCriteria
@@ -61,41 +67,4 @@ interface SearchResult {
   total: number; // Total number of results
   time: string; // Search execution time
 }
-```
-
-## Syntax
-
-```typescript
-search(criteria: SearchCriteria, options?: DefaultRegistryApiOptions): Promise<SearchResult>
-```
-
-## Parameters
-
-- **criteria** (SearchCriteria): The search criteria object
-  - **text** (string, optional): Full-text search query
-  - **size** (number, optional): Number of results to return (default 20, max 250)
-  - **from** (number, optional): Offset for pagination
-  - **quality** (number, optional): Quality weight (0-1, affects scoring)
-  - **popularity** (number, optional): Popularity weight (0-1, affects scoring)
-  - **maintenance** (number, optional): Maintenance weight (0-1, affects scoring)
-- **options** (DefaultRegistryApiOptions, optional): Additional options including authentication token
-
-## Returns
-
-Returns a `Promise<SearchResult>` containing search results with package information, scores, and metadata.
-
-## Examples
-
-### Basic text search
-
-```typescript
-import { search } from "npm-registry-sdk";
-
-const results = await search({ text: "express" });
-console.log(`Found ${results.total} packages matching "express"`);
-
-results.objects.forEach(({ package: pkg, score }) => {
-  console.log(`${pkg.name}: ${pkg.description}`);
-  console.log(`Score: ${score.final.toFixed(3)}`);
-});
 ```
