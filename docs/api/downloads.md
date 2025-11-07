@@ -7,7 +7,11 @@ The `downloads` api retrieves download statistics for a specific npm package ove
 ### Period
 
 ```typescript
-type Period = "last-day" | "last-month" | "last-week" | (string & Record<never, never>); // Custom date range in YYYY-MM-DD:YYYY-MM-DD format
+type Period =
+ | "last-day"
+ | "last-month"
+ | "last-week"
+ | (string & Record<never, never>); // Custom date range in YYYY-MM-DD:YYYY-MM-DD format
 ```
 
 ### NpmPackageDownload
