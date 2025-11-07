@@ -2,6 +2,12 @@
 
 The `packument` api retrieves the complete package document (packument) for a specific npm package, containing all metadata, version information, and distribution details.
 
+## Syntax
+
+```typescript
+packument(pkgName: string): Promise<NpmPackument>
+```
+
 ## Types
 
 ### NpmPackument
@@ -96,111 +102,4 @@ interface NpmSignature {
   keyid: string;
   sig: string;
 }
-```
-
-## Syntax
-
-```typescript
-packument(pkgName: string): Promise<NpmPackument>
-```
-
-## Parameters
-
-- **pkgName** (string): The name of the npm package to retrieve the packument for. Must be a non-empty string.
-
-## Returns
-
-Returns a `Promise<NpmPackument>` containing the complete package document with all versions, metadata, and distribution information.
-
-## Errors
-
-- **TypeError**: Thrown when `pkgName` is not a non-empty string.
-
-## Examples
-
-### Get complete package information
-
-```typescript
-import { packument } from "npm-registry-sdk";
-
-const pkg = await packument("express");
-console.log(`Package: ${pkg.name}`);
-console.log(`Description: ${pkg.description}`);
-console.log(`Latest version: ${pkg["dist-tags"].latest}`);
-console.log(`Total versions: ${Object.keys(pkg.versions).length}`);
-```
-
-### Get latest version details
-
-```typescript
-const pkg = await packument("lodash");
-const latestVersion = pkg["dist-tags"].latest;
-const versionInfo = pkg.versions[latestVersion];
-
-console.log(`Latest version: ${latestVersion}`);
-console.log(`Main entry: ${versionInfo.main}`);
-console.log(`License: ${versionInfo.license}`);
-console.log(`Dependencies: ${Object.keys(versionInfo.dependencies || {}).length}`);
-```
-
-### Analyze package history
-
-```typescript
-const pkg = await packument("react");
-
-// Get all versions sorted by publication date
-const versionHistory = Object.entries(pkg.time)
-  .filter(([version]) => version !== "created" && version !== "modified")
-  .sort(([, a], [, b]) => new Date(a).getTime() - new Date(b).getTime());
-
-console.log(`First published: ${versionHistory[0][1]}`);
-console.log(`Latest update: ${pkg.time.modified}`);
-console.log(`Version count: ${versionHistory.length}`);
-```
-
-### Check package maintainers
-
-```typescript
-const pkg = await packument("typescript");
-
-if (pkg.maintainers) {
-  console.log("Package maintainers:");
-  pkg.maintainers.forEach((maintainer) => {
-    console.log(`- ${maintainer.name} (${maintainer.email})`);
-  });
-}
-```
-
-### Analyze dependencies across versions
-
-```typescript
-const pkg = await packument("webpack");
-
-const dependencyCounts = Object.entries(pkg.versions).map(([version, info]) => ({
-  version,
-  dependencies: Object.keys(info.dependencies || {}).length,
-  devDependencies: Object.keys(info.devDependencies || {}).length,
-  publishedAt: pkg.time[version],
-}));
-
-// Sort by publication date
-dependencyCounts.sort((a, b) => new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime());
-
-console.log("Dependency evolution:");
-dependencyCounts.slice(-5).forEach(({ version, dependencies, devDependencies }) => {
-  console.log(`${version}: ${dependencies} deps, ${devDependencies} devDeps`);
-});
-```
-
-### Get download information
-
-```typescript
-const pkg = await packument("axios");
-const latestVersion = pkg["dist-tags"].latest;
-const dist = pkg.versions[latestVersion].dist;
-
-console.log(`Latest tarball: ${dist.tarball}`);
-console.log(`Package size: ${(dist.unpackedSize || 0 / 1024).toFixed(2)} KB`);
-console.log(`File count: ${dist.fileCount || "unknown"}`);
-console.log(`Integrity: ${dist.integrity || dist.shasum}`);
 ```
