@@ -5,7 +5,17 @@ The `packument` api retrieves the complete package document (packument) for a sp
 ## Syntax
 
 ```typescript
-packument(pkgName: string): Promise<NpmPackument>
+packument(
+  name:string,
+  options?:
+  PackumentRegistryApiOptions
+):Promise<Packument>
+
+packumentVersion(
+  name: string,
+  version: string,
+  options?: PackumentRegistryApiOptions
+): Promise<PackumentVersion>
 ```
 
 ## Types

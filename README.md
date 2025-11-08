@@ -62,6 +62,10 @@ console.log(user);
 interface LoadRegistryMixins {
   spawn?: typeof spawnSync;
 }
+
+interface DefaultRegistryApiOptions {
+  token?: string;
+}
 ```
 
 #### Functions

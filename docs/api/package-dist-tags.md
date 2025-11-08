@@ -15,11 +15,3 @@ packageDistTags(pkgName: string, options?: DefaultRegistryApiOptions): Promise<D
 ```typescript
 type DistTags = Record<string, string>;
 ```
-
-### DefaultRegistryApiOptions
-
-```typescript
-interface DefaultRegistryApiOptions {
-  token?: string; // npm authentication token for private packages
-}
-```
