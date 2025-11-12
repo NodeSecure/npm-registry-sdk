@@ -51,191 +51,53 @@ console.log(user);
 ```
 
 <kbd>user</kbd> takes an optional payload pagination which can be used to set page number and page size to be used for paginated properties of the user like <kbd>pacakges</kbd>.
-## API
 
-### getNpmRegistryURL(): string
+## API Documentaion
 
-### getLocalRegistryURL(): string
+### Registry Modules
 
-### setLocalRegistryURL(value: string | URL): string
+#### Types
 
-### loadRegistryURLFromLocalSystem(mixins?: LoadRegistryMixins): string
-
-```ts
+```typescript
 interface LoadRegistryMixins {
   spawn?: typeof spawnSync;
 }
-```
 
-### metadata(): Promise\<NpmRegistryMetadata>
-
-```ts
-interface NpmRegistryMetadata {
-  db_name: string;
-  doc_count: number;
-  doc_del_count: number;
-  update_seq: number;
-  purge_seq: number;
-  compact_running: boolean;
-  disk_size: number;
-  data_size: number;
-  instance_start_time: string;
-  disk_format_version: number;
-  committed_update_seq: number;
+interface DefaultRegistryApiOptions {
+  token?: string;
 }
 ```
 
-### packument(name: string, options?: PackumentRegistryApiOptions): Promise\<Packument>
-
-```ts
-interface Packument {
-  _id: string;
-  _rev: string;
-  name: string;
-  readme?: string;
-  description?: string;
-  'dist-tags': { latest?: string } & ObjectOfStrings;
-  versions: {
-    [key: string]: PackumentVersion
-  };
-  maintainers: Maintainer[];
-  time: {
-    modified: string,
-    created: string,
-    [key: string]: string
-  };
-  users?: {
-    [key: string]: boolean;
-  }
-  contributors?: Maintainer[];
-  homepage?: string;
-  keywords?: string[];
-  repository?: Repository;
-  author?: Maintainer;
-  bugs?:  { url: string };
-  license: string;
-  // left out users (stars) deprecated, and attachments (does nothing)
-  readmeFilename?: string;
-}
-```
-
-### packumentVersion(name: string, version: string, options?: PackumentRegistryApiOptions): Promise\<PackumentVersion>
-
-```ts
-type PackumentVersion = PackageJson & {
-  gitHead?: string;
-  maintainers: Maintainer[];
-  dist: Dist;
-  types?: string;
-  deprecated?: string;
-  _id: string;
-  _npmVersion: string;
-  _nodeVersion: string;
-  _npmUser: Maintainer;
-  _hasShrinkwrap?: boolean;
-  _engineSupported?: boolean;
-  _defaultsLoaded?: boolean;
-  _npmOperationalInternal?: {
-    host: string;
-    tmp: string;
-  }
-};
-```
-
-### downloads(pkgName: string, period: Period = "last-week"): Promise< NpmPackageDownload >
-
-```ts
-interface NpmPackageDownload {
-  downloads: number;
-  start: string;
-  end: string;
-  package: string;
-}
-```
-
-### user(username: string, pagination: Partial< Pagination > = {}): Promise< NpmUserProfile >
-
-```ts
-interface Pagination {
-  perPage: number;
-  page: number;
-}
-
-interface NpmPackage {
-  id: number;
-  name: string;
-  description: string;
-  maintainers: string[];
-  version: string;
-}
-
-interface NpmUserProfile {
-  id: number;
-  name: string;
-  fullname?: string;
-  accounts: {
-    twitter?: string;
-    github?: string;
-  };
-  avatars: {
-    small: string;
-    medium: string;
-    large: string;
-  };
-  packages: {
-    total: number;
-    objects: NpmPackage[];
-    urls: {
-      next: string;
-      prev: string;
-    }
-  };
-  pagination: Pagination;
-}
-```
-
-### keys(): Promise< RegistryKey[] >
-
-```ts
-export interface RegistryKey {
-  keyid: string;
-  keytype: string; 
-  scheme: string;
-  key: string;
-  pemkey: string;
-  expires: string | null;
-}
-```
-
-### packageDistTags(pkgName: string, options?: DefaultRegistryApiOptions): Promise<DistTags>
-
-```ts
-export interface DistTags {
-  latest: string;
-  next?: string;
-  canary?: string;
-  rc?: string;
-  beta?: string;
-  alpha?: string;
-  experimental?: string;
-}
+#### Functions
 
 ```
+getNpmRegistryURL(): string
 
-### tarballDownload(name: string,version, options?: DefaultRegistryApiOptions): NodeJS.ReadableStream
+getLocalRegistryURL(): string
 
-### org(namespace: string): Promise<NpmPackageOrg>
+setLocalRegistryURL(value: string | URL): string
 
-```ts
-export type PermissionLevel = "read" | "write" | "admin" | "maintain";
-
-export type NpmPackageOrg = Record<string, PermissionLevel>;
+loadRegistryURLFromLocalSystem(mixins: LoadRegistryMixins = {}): string
 ```
+
+For complete details on each API, refer the following documents:
+
+- [`user`](./docs/api/user.md)
+- [`downloads`](./docs/api/downloads.md)
+- [`keys`](./docs/api/keys.md)
+- [`metadata`](./docs/api/metadata.md)
+- [`org`](./docs/api/org.md)
+- [`packument`](./docs/api/packument.md)
+- [`package-dist-tags`](./docs/api/package-dist-tags.md)
+- [`tarball-download`](./docs/api/tarball-download.md)
+- [`search`](./docs/api/search.md)
 
 ## Contributors ✨
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
