@@ -104,6 +104,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "anas-codx",
+      "name": "Mohd Anas",
+      "avatar_url": "https://avatars.githubusercontent.com/u/211504408?v=4",
+      "profile": "http://portfolio.codingdestro.fun",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
