@@ -66,6 +66,11 @@ export async function user(
   username: string,
   pagination: Partial<Pagination> = {}
 ): Promise<NpmUserProfile> {
+  process.emitWarning(
+    "The `user` API is deprecated and may be removed in future versions.",
+    "DeprecationWarning"
+  );
+
   if (typeof username !== "string" || username.length === 0) {
     throw new TypeError("Argument `username` must be a non empty string");
   }
@@ -74,7 +79,11 @@ export async function user(
   url.searchParams.set("perPage", perPage.toString());
   url.searchParams.set("page", page.toString());
 
-  const { data } = await httpie.get<NpmWebUser>(url, { headers: { "x-spiferack": "1" } });
+  const { data } = await httpie.get<NpmWebUser>(url, {
+    headers: {
+      "x-spiferack": "1"
+    }
+  });
 
   const npmUserProfile = {
     id: data.scope.id,

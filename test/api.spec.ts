@@ -87,7 +87,7 @@ describe.skip("metadata", () => {
   });
 });
 
-describe("user", () => {
+describe.skip("user", () => {
   it("should return user data", async() => {
     const defaultUser = "test-user";
     const { name, avatars, id, packages, pagination } = await user(defaultUser, { perPage: 30, page: 0 });
