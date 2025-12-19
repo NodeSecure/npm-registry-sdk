@@ -14,6 +14,11 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public",
+    "provenance": true
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NodeSecure/npm-registry-sdk.git"
