@@ -7,3 +7,4 @@ export * from "./keys.ts";
 export * from "./package-dist-tags.ts";
 export * from "./tarball-download.ts";
 export * from "./org.ts";
+export * from "./advisories-bulk.ts";
