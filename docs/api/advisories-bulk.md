@@ -6,7 +6,7 @@ The `advisories-bulk` api retrieves vulnerabilities informations about packages 
 ## Syntax
 
 ```ts
-advisoriesBulk(packageVersions:PackageVersions,options?:AdvisoriesBulkApiOptions): Promise<Advisories>
+advisoriesBulk(packageVersions: PackageVersions, options?: AdvisoriesBulkApiOptions): Promise<Advisories>
 ```
 
 ## Types

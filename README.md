@@ -91,6 +91,7 @@ For complete details on each API, refer the following documents:
 - [`package-dist-tags`](./docs/api/package-dist-tags.md)
 - [`tarball-download`](./docs/api/tarball-download.md)
 - [`search`](./docs/api/search.md)
+- [`advisories-bulk`](./docs/api/advisories-bulk.md)
 
 ## Contributors ✨
 
