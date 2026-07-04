@@ -61,6 +61,20 @@ const kDefaultAuditReports = {
         score: 9.1,
         vectorString: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H"
       }
+    },
+    {
+      id: 1115810,
+      url: "https://github.com/advisories/GHSA-f23m-r3pf-42rh",
+      title: "lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`",
+      severity: "moderate",
+      vulnerable_versions: "<=4.17.23",
+      cwe: [
+        "CWE-1321"
+      ],
+      cvss: {
+        score: 6.5,
+        vectorString: "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L"
+      }
     }
   ]
 };
