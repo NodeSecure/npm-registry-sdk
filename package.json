@@ -35,7 +35,7 @@
   "homepage": "https://github.com/NodeSecure/npm-registry-sdk#readme",
   "dependencies": {
     "@nodesecure/npm-types": "1.4.0",
-    "@openally/httpie": "1.1.4"
+    "@openally/httpie": "2.0.0"
   },
   "devDependencies": {
     "@openally/config.eslint": "2.4.3",
