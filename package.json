@@ -38,7 +38,7 @@
     "@openally/httpie": "2.0.0"
   },
   "devDependencies": {
-    "@openally/config.eslint": "2.4.3",
+    "@openally/config.eslint": "3.0.1",
     "@openally/config.typescript": "^1.2.1",
     "@types/node": "^26.0.1",
     "c8": "^12.0.0",
